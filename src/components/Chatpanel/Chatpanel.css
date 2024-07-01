@@ -1,0 +1,16 @@
+.chatpanel {
+  background-color: darkslategray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5em;
+}
+
+.chatpanel__input {
+  margin-top: auto;
+}
+
+.chatpanel__input input {
+  padding: 1em;
+  width: 200px;
+}
