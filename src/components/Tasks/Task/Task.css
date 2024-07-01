@@ -1,0 +1,19 @@
+.task {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+}
+
+.task div {
+  display: flex;
+  justify-content: center;
+}
+
+.task__title {
+  padding: 0em 0.5em;
+}
+
+.task__start_button {
+  margin-left: auto;
+  float: right;
+}

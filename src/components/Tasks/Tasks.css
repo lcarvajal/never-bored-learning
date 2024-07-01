@@ -1,3 +1,10 @@
 .tasks {
   padding: 0.2em;
 }
+
+.tasks__list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+  max-width: 600px;
+}

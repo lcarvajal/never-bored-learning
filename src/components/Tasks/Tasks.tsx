@@ -1,4 +1,5 @@
 import "./Tasks.css"
+import Task from "./Task/Task"
 
 function CurrentTask() {
 
@@ -16,11 +17,11 @@ export default function Tasks() {
     <div className="tasks">
       <CurrentTask />
       <h1>Tasks</h1>
-      <ul>
-        <li>Task 1</li>
-        <li>Task 2</li>
-        <li>Task 3</li>
-      </ul>
+      <div className="tasks__list">
+        <Task />
+        <Task />
+        <Task />
+      </div>
     </div>
   )
 }

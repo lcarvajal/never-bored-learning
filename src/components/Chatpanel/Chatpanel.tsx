@@ -5,7 +5,7 @@ export default function Chatpanel() {
   return (
     <div className="chatpanel">
       <div className="chatpanel__header">
-        <h3>Chat</h3>
+        <h1>Chat</h1>
       </div>
       <div className="chatpanel__messages">
         <ul>
