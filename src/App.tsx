@@ -2,6 +2,7 @@ import './App.css'
 import Chatpanel from './components/Chatpanel/Chatpanel'
 import Tasks from './components/Tasks/Tasks'
 import { useState } from 'react'
+import { requestForToken } from './firebase'
 
 interface Task {
   id: number,
