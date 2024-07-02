@@ -61,21 +61,32 @@ function App() {
     setTasks([...tasks, task]);
   }
 
-  function completeTask(task: Task) {
-    setTasks(tasks.filter(t => t.id !== task.id));
+  function completeCurrentTask() {
+    setTasks(tasks.filter(t => t.id !== id));
     setCurrentTask({} as Task);
   }
 
-  function completeTaskLater(task: Task) {
-    setTasks([...tasks, task]);
+  function completeCurrentTaskLater() {
+    setTasks([...tasks, currentTask]);
     setCurrentTask({} as Task);
   }
 
   function startTask(id: number) {
-    setTasks(tasks.filter(t => t.id !== id));
-    const task = tasks.filter(t => t.id === id)[0];
-    setCurrentTask(task);
-    window.open(task.url, '_blank').focus();
+    const taskToStart = tasks.find(t => t.id === id);
+    let tasksWithoutTaskToStart: Task[] = tasks.filter(t => t.id !== id);
+
+    if (currentTask.id && currentTask.id != id) {
+      tasksWithoutTaskToStart.push(currentTask);
+    }
+
+    if (taskToStart) {
+      setCurrentTask(taskToStart);
+      setTasks(tasksWithoutTaskToStart);
+    }
+    else {
+      console.error(`Task with id ${id} not found`);
+    }
+    // window.open(task.url, '_blank').focus();
   }
 
   function removeTask(id: number) {
@@ -85,7 +96,7 @@ function App() {
 
   return (
     <div className='app'>
-      <Tasks currentTask={currentTask} tasks={tasks} onAddTask={addTask} onCompleteTask={completeTask} onCompleteTaskLater={completeTaskLater} onStartTask={startTask} onRemoveTask={removeTask} />
+      <Tasks currentTask={currentTask} tasks={tasks} onAddTask={addTask} onCompleteTask={completeCurrentTask} onCompleteTaskLater={completeCurrentTaskLater} onStartTask={startTask} onRemoveTask={removeTask} />
       <Chatpanel />
     </div>
   )
