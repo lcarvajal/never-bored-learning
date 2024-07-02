@@ -1,20 +1,31 @@
 import "./Task.css"
 
-export default function Task() {
+interface TaskProps {
+  id: number
+  title: string
+  year: number
+  url: string
+  description: string
+  type: string
+  onStartTask: (id: number) => void
+  onRemoveTask: (id: number) => void
+}
+
+export default function Task(props: TaskProps) {
   return (
-    <div className="task">
+    <div id={props.id.toString()} className="task">
       <div className="task__close_button">
-        <button>X</button>
+        <button onClick={() => props.onRemoveTask(props.id)}>X</button>
       </div>
       <div className="task__title">
         <p>
-          Task
+          {props.title}
           <br></br>
-          <span>Book</span>
+          <span>{props.type}</span>
         </p>
       </div>
       <div className="task__start_button">
-        <button>Start</button>
+        <button onClick={() => props.onStartTask(props.id)}>Start</button>
       </div>
     </div>
   )

@@ -1,5 +1,26 @@
 import './Chatpanel.css'
 
+interface MessageProps {
+  message: string
+  sender: string
+}
+
+function Message(props: MessageProps) {
+  return (
+    <>
+      {props.sender === "user" ? (
+        <div className="text-right">
+          <p className="message message__user">{props.message}</p>
+        </div>
+      ) : (
+        <div className="">
+          <p className="message message__bot">{props.message}</p>
+        </div>
+      )}
+    </>
+  )
+}
+
 export default function Chatpanel() {
 
   return (
@@ -8,11 +29,10 @@ export default function Chatpanel() {
         <h1>Chat</h1>
       </div>
       <div className="chatpanel__messages">
-        <ul>
-          <li>sample message 1</li>
-          <li>sample message 2</li>
-          <li>sample message 3</li>
-        </ul>
+        <Message message="Hello, how are you?" sender="bot" />
+        <Message message="Great, what about you?" sender="user" />
+        <Message message="Sweet" sender="bot" />
+        <Message message="Great to hear!" sender="user" />
       </div>
       <div className="chatpanel__input">
         <input type="text" placeholder="Type a message..." />

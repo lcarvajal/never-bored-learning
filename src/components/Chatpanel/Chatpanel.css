@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0.5em;
+  padding: 0.5em 1em;
 }
 
 .chatpanel__input {
@@ -11,6 +11,30 @@
 }
 
 .chatpanel__input input {
+  margin-right: 1em;
   padding: 1em;
   width: 200px;
+}
+
+.chatpanel__messages {
+  padding: 0 1em;
+}
+
+.message {
+  display: inline-block;
+  padding: 0.6em 1.2em;
+  max-width: 600px;
+  border-radius: 0.5em;
+}
+
+.message__user {
+  background-color: darkslateblue;
+}
+
+.message__bot {
+  background-color: darkolivegreen;
+}
+
+.text-right {
+  text-align: right;
 }
