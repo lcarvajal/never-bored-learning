@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getMessaging } from "firebase/messaging";
 import { getMessaging, getToken } from 'firebase/messaging';
 
 const firebaseConfig = {
