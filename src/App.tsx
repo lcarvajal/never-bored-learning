@@ -62,7 +62,6 @@ function App() {
   }
 
   function completeCurrentTask() {
-    setTasks(tasks.filter(t => t.id !== id));
     setCurrentTask({} as Task);
   }
 
@@ -90,7 +89,6 @@ function App() {
   }
 
   function removeTask(id: number) {
-    console.log("remove!")
     setTasks(tasks.filter(t => t.id !== id));
   }
 
