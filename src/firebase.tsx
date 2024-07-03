@@ -11,8 +11,8 @@ const firebaseConfig = {
 };
 
 
-initializeApp(firebaseConfig);
-const messaging = getMessaging();
+const app = initializeApp(firebaseConfig);
+const messaging = getMessaging(app);
 
 export const requestForToken = () => {
   return getToken(messaging, { vapidKey: import.meta.env.VITE_FIREBASE_WEB_PUSH_CERTIFICATE_KEY })
