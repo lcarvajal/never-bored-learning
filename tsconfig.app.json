@@ -28,6 +28,6 @@
   "include": [
     "src",
     "./env.d.ts",
-    "public/firebase-messaging-sw.js"
+    "firebase-messaging-sw.js"
   ]
 }
