@@ -3,12 +3,12 @@ importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compa
 
 // Initialize the Firebase app in the service worker by passing in the messagingSenderId.
 firebase.initializeApp({
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  apiKey: 'AIzaSyAK0N08gVwwWEa79sSlcdTLz1YENDa5-uM',
   authDomain: "never-bored-learning.firebaseapp.com",
   projectId: 'never-bored-learning',
   storageBucket: 'never-bored-learning.appspot.com',
   messagingSenderId: "456933280849",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  appId: '1:456933280849:web:cca8b312e967b5709efc70',
 });
 
 // Retrieve an instance of Firebase Messaging so that it can handle background messages.
