@@ -1,7 +1,7 @@
 import './App.css'
 import Tasks from './components/Tasks/Tasks'
 import { useState } from 'react'
-import { requestForToken } from './firebase'
+import { requestPermission } from './firebase';
 
 interface Task {
   id: number,
@@ -89,7 +89,7 @@ function App() {
   }
 
   function removeTask(id: number) {
-    requestForToken();
+    requestPermission();
     console.log(id);
     // setTasks(tasks.filter(t => t.id !== id));
   }

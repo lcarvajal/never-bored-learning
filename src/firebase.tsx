@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getMessaging, getToken } from 'firebase/messaging';
+import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -14,18 +14,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
-export const requestForToken = () => {
-  return getToken(messaging, { vapidKey: import.meta.env.VITE_FIREBASE_WEB_PUSH_CERTIFICATE_KEY })
-    .then((currentToken) => {
-      if (currentToken) {
-        console.log('current token for client: ', currentToken);
-        // Perform any other neccessary action with the token
-      } else {
-        // Show permission request UI
-        console.log('No registration token available. Request permission to generate one.');
-      }
-    })
-    .catch((err) => {
-      console.log('An error occurred while retrieving token. ', err);
-    });
+export const requestPermission = async () => {
+  try {
+    const currentToken = await getToken(messaging, { vapidKey: process.env.REACT_APP_VAPID_KEY });
+    if (currentToken) {
+      console.log('Token received: ', currentToken);
+    } else {
+      console.log('No registration token available. Request permission to generate one.');
+    }
+  } catch (err) {
+    console.log('An error occurred while retrieving token. ', err);
+  }
 };
+
+onMessage(messaging, (payload) => {
+  console.log('Message received. ', payload);
+});
