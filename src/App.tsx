@@ -1,5 +1,4 @@
 import './App.css'
-import Chatpanel from './components/Chatpanel/Chatpanel'
 import Tasks from './components/Tasks/Tasks'
 import { useState } from 'react'
 import { requestForToken } from './firebase'
@@ -90,13 +89,13 @@ function App() {
   }
 
   function removeTask(id: number) {
-    setTasks(tasks.filter(t => t.id !== id));
+    requestForToken();
+    // setTasks(tasks.filter(t => t.id !== id));
   }
 
   return (
     <div className='app'>
       <Tasks currentTask={currentTask} tasks={tasks} onAddTask={addTask} onCompleteTask={completeCurrentTask} onCompleteTaskLater={completeCurrentTaskLater} onStartTask={startTask} onRemoveTask={removeTask} />
-      <Chatpanel />
     </div>
   )
 }

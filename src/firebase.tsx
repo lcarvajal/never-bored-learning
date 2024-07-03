@@ -2,16 +2,16 @@ import { initializeApp } from "firebase/app";
 import { getMessaging, getToken } from 'firebase/messaging';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.FIREBASE_API_KEY,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "never-bored-learning.firebaseapp.com",
   projectId: "never-bored-learning",
   storageBucket: "never-bored-learning.appspot.com",
   messagingSenderId: "456933280849",
-  appId: import.meta.env.FIREBASE_APP_ID
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 const messaging = getMessaging();
 
 export const requestForToken = () => {

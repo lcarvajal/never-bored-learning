@@ -1,7 +1,4 @@
 {
-  "include": [
-    "./env.d.ts",
-  ],
   "files": [],
   "references": [
     {
