@@ -1,7 +1,7 @@
 importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js');
 importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js');
 
-// Initialize the Firebase app in the service worker by passing in the messagingSenderId.
+// Keys need to be hard-coded since environment variables are note accessible from public/
 firebase.initializeApp({
   apiKey: 'AIzaSyAK0N08gVwwWEa79sSlcdTLz1YENDa5-uM',
   authDomain: "never-bored-learning.firebaseapp.com",
