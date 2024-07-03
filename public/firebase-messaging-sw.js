@@ -4,12 +4,12 @@ importScripts('/__/firebase/init.js');
 
 // Initialize the Firebase app in the service worker by passing the generated config
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  apiKey: process.env.VITE_FIREBASE_API_KEY,
   authDomain: "never-bored-learning.firebaseapp.com",
   projectId: "never-bored-learning",
   storageBucket: "never-bored-learning.appspot.com",
   messagingSenderId: "456933280849",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+  appId: process.env.VITE_FIREBASE_APP_ID
 };
 
 firebase.initializeApp(firebaseConfig);
