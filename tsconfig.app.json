@@ -28,7 +28,6 @@
   "include": [
     "src",
     "./env.d.ts",
-    "public/firebase-messaging-sw.js",
-    "vite-env.d.ts"
+    "public/firebase-messaging-sw.js"
   ]
 }
