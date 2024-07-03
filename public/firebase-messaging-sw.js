@@ -25,3 +25,13 @@ messaging.onBackgroundMessage(function (payload) {
 
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
+
+messaging.addEventListener('notificationclick', event => {
+  const notificationData = event.notification.data;
+
+  if (notificationData.url) {
+    clients.openWindow(notificationData.url);
+  }
+
+  event.notification.close();
+});
