@@ -90,6 +90,7 @@ function App() {
 
   function removeTask(id: number) {
     requestForToken();
+    console.log(id);
     // setTasks(tasks.filter(t => t.id !== id));
   }
 
