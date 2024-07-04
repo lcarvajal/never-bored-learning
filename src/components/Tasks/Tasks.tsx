@@ -14,6 +14,8 @@ interface CurrentTaskProps {
   task: Task
   onCompleteTask: (id: number) => void
   onCompleteTaskLater: (id: number) => void
+  onStartTask: (id: number) => void
+  onRemoveTask: (id: number) => void
 }
 
 interface TasksProps {
@@ -29,15 +31,24 @@ interface TasksProps {
 function CurrentTask(props: CurrentTaskProps) {
 
   return (
-    <div className="currenttask">
-      <h1>Current Task</h1>
-      {props.task.title ? <p>{props.task.title}</p> : <p>Started tasks appear here</p>}
+    <div className="current-task">
+      <h1>Get Started with AI</h1>
+      <p>To get you started, we put together resources on basic AI concepts and beginner-friendly AI tutorials.</p>
+      <h2>Now Learning</h2>
       {props.task.id ? (
         <>
-          <button onClick={() => props.onCompleteTask(props.task.id)}>Complete</button>
-          <button onClick={() => props.onCompleteTaskLater(props.task.id)}>Continue later</button>
+          <Task {...props.task} onStartTask={props.onStartTask} onRemoveTask={props.onRemoveTask} />
+          <div className="current-task__actions">
+            <button onClick={() => props.onCompleteTask(props.task.id)}>Complete</button>
+            <button onClick={() => props.onCompleteTaskLater(props.task.id)}>Continue later</button>
+          </div>
         </>
-      ) : <></>}
+      ) : (
+        <>
+          <p>Open a resource to get started.</p>
+        </>
+      )}
+
     </div>
   )
 }
@@ -45,8 +56,8 @@ function CurrentTask(props: CurrentTaskProps) {
 export default function Tasks(props: TasksProps) {
   return (
     <div className="tasks">
-      <CurrentTask onCompleteTask={props.onCompleteTask} onCompleteTaskLater={props.onCompleteTaskLater} task={props.currentTask} />
-      <h1>Tasks</h1>
+      <CurrentTask onCompleteTask={props.onCompleteTask} onCompleteTaskLater={props.onCompleteTaskLater} onStartTask={props.onStartTask} onRemoveTask={props.onRemoveTask} task={props.currentTask} />
+      <h2>Resources</h2>
       <div className="tasks__list">
         {props.tasks.map((task: any) => <Task {...task} key={task.id} onStartTask={props.onStartTask} onRemoveTask={props.onRemoveTask} />)}
       </div>
