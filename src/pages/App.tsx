@@ -91,7 +91,7 @@ function App() {
         };
 
         const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-        await delay(12000);
+        await delay(10000);
         const notification = await showNotification(title, options);
         if (notification) {
           console.log("Notification shown:", notification);
