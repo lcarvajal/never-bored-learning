@@ -39,7 +39,12 @@ export const showNotification = async (title: string, options: NotificationOptio
   }
 
   if (Notification.permission === "granted") {
-    return new Notification(title, options);
+    const notification = new Notification(title, options);
+    notification.onclick = () => {
+      window.focus(); // Focus the window if it's already open
+      window.open(window.location.href, '_blank'); // Open the site in a new tab
+    };
+    return notification;
   } else if (Notification.permission !== "denied") {
     const permission = await Notification.requestPermission();
     if (permission === "granted") {
