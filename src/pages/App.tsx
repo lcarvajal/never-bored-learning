@@ -1,7 +1,7 @@
 import './App.css';
 import Tasks from '../components/Tasks/Tasks';
 import { useState } from 'react';
-import { requestPermission } from '../firebase';
+import { requestPermission, showNotification } from '../firebase';
 
 interface Task {
   id: number,
@@ -70,7 +70,7 @@ function App() {
     setCurrentTask({} as Task);
   }
 
-  function startTask(id: number) {
+  async function startTask(id: number) {
     const taskToStart = tasks.find(t => t.id === id);
     let tasksWithoutTaskToStart: Task[] = tasks.filter(t => t.id !== id);
 
@@ -81,17 +81,36 @@ function App() {
     if (taskToStart) {
       setCurrentTask(taskToStart);
       setTasks(tasksWithoutTaskToStart);
+      requestPermission();
+      window.open(taskToStart.url, '_blank')?.focus();
+
+      try {
+        const title = "Off course?";
+        const options = {
+          body: "If you're bored, switch tasks"
+        };
+
+        const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+        await delay(12000);
+        const notification = await showNotification(title, options);
+        if (notification) {
+          console.log("Notification shown:", notification);
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error("Error showing notification:", error.message);
+        } else {
+          console.error("Unknown error showing notification");
+        }
+      }
     }
     else {
       console.error(`Task with id ${id} not found`);
     }
-    // window.open(task.url, '_blank').focus();
   }
 
   function removeTask(id: number) {
-    requestPermission();
-    console.log(id);
-    // setTasks(tasks.filter(t => t.id !== id));
+    setTasks(tasks.filter(t => t.id !== id));
   }
 
   return (
