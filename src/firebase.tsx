@@ -27,6 +27,31 @@ export const requestPermission = async () => {
   }
 };
 
+interface NotificationOptions {
+  body?: string;
+  icon?: string;
+  // You can add other Notification options here if needed
+}
+
+export const showNotification = async (title: string, options: NotificationOptions): Promise<Notification | void> => {
+  if (!("Notification" in window)) {
+    throw new Error("Notification not supported");
+  }
+
+  if (Notification.permission === "granted") {
+    return new Notification(title, options);
+  } else if (Notification.permission !== "denied") {
+    const permission = await Notification.requestPermission();
+    if (permission === "granted") {
+      return new Notification(title, options);
+    } else {
+      throw new Error("Permission not granted for Notification");
+    }
+  } else {
+    throw new Error("Permission not granted for Notification");
+  }
+};
+
 onMessage(messaging, (payload) => {
   console.log('Message received. ', payload);
 });
