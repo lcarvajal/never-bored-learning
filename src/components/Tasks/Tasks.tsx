@@ -33,10 +33,10 @@ function CurrentTask(props: CurrentTaskProps) {
   return (
     <div className="current-task">
       <h1>Get Started with AI</h1>
-      <p>To get you started, we put together resources on basic AI concepts and beginner-friendly AI tutorials.</p>
-      <h2>Now Learning</h2>
+      <p>We put together resources on basic concepts and beginner-friendly tutorials.</p>
       {props.task.id ? (
         <>
+          <h2>Now Learning</h2>
           <Task {...props.task} onStartTask={props.onStartTask} onRemoveTask={props.onRemoveTask} />
           <div className="current-task__actions">
             <button onClick={() => props.onCompleteTask(props.task.id)}>Complete</button>
@@ -45,7 +45,6 @@ function CurrentTask(props: CurrentTaskProps) {
         </>
       ) : (
         <>
-          <p>Open a resource to get started.</p>
         </>
       )}
 
