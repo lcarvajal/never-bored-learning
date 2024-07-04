@@ -2,18 +2,18 @@
   background-color: black;
   display: flex;
   justify-content: center;
+  flex-direction: row;
+  padding: 0em 1em;
 }
 
-.task div {
-  display: flex;
-  justify-content: center;
-}
 
 .task__title {
-  padding: 0em 0.5em;
+  margin-right: 2em;
 }
 
 .task__start_button {
   margin-left: auto;
+  margin-top: auto;
+  margin-bottom: 1em;
   float: right;
 }
