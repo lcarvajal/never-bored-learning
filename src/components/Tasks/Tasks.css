@@ -8,3 +8,8 @@
   flex-direction: column;
   row-gap: 1em;
 }
+
+.current-task__actions button {
+  margin-top: 1em;
+  margin-right: 0.5em;
+}
