@@ -5,6 +5,7 @@ import ErrorPage from "./pages/ErrorPage.tsx";
 import './index.css'
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import LandingPage from './pages/LandingPage.tsx';
+import LearningOverviewPage from './pages/LearningOverviewPage.tsx';
 
 // Register the service worker
 if ('serviceWorker' in navigator) {
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <LandingPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "learning-overview/",
+    element: <LearningOverviewPage />,
     errorElement: <ErrorPage />,
   },
   {
