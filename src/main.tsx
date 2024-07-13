@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider, } from "react-router-dom"
 import routes from './routes/routes';
+import { auth } from './util/firebase';
+import { setTokenForAxiosRequests } from './util/axios';
 
 // Register the service worker
 if ('serviceWorker' in navigator) {
@@ -14,6 +16,15 @@ if ('serviceWorker' in navigator) {
       console.error('Service Worker registration failed:', error);
     });
 }
+
+// Set bearer token for requests to server
+auth.onAuthStateChanged(function (user) {
+  if (user) {
+    user.getIdToken().then(function (idToken) {
+      setTokenForAxiosRequests(idToken);
+    });
+  }
+});
 
 const router = createBrowserRouter([...routes]);
 
