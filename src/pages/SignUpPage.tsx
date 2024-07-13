@@ -8,13 +8,13 @@ export default function SignUpPage() {
   const handleSignUp = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    console.log("Signing up with for public url: ", process.env.PUBLIC_URL);
-    const public_url = process.env.PUBLIC_URL as string;
+    console.log("Signing up with for public url: ", process.env.VITE_PUBLIC_URL);
+    const public_url = import.meta.env.VITE_PUBLIC_URL as string;
 
     const actionCodeSettings = {
       // URL you want to redirect back to. The domain (www.example.com) for this
       // URL must be in the authorized domains list in the Firebase Console.
-      url: public_url,
+      url: public_url + "sign-in",
       handleCodeInApp: true,  // This must be true in order to send user back to website.
     };
 
