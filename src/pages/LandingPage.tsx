@@ -16,7 +16,7 @@ export default function LandingPage() {
 
     await delay(3000);
 
-    navigate('/learning-overview');
+    navigate('/sign-up');
   }
 
   return (
