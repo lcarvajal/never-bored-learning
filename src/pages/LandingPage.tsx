@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './LandingPage.css'
 import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
@@ -21,9 +20,10 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="landing-page">
+    <div className="">
       {isLoading ? <h3>{loadingMessage}</h3> : (
         <>
+          <h5>Write a specific learning goal you want to accomplish</h5>
           <input type="text" placeholder="I want to learn..."></input>
           <br></br>
           <button type="button" onClick={handleClick}>

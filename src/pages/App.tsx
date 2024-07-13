@@ -1,4 +1,3 @@
-import './App.css';
 import Tasks from '../components/Tasks/Tasks';
 import { useState } from 'react';
 import { requestPermission, showNotification } from '../firebase';
@@ -118,7 +117,7 @@ function App() {
   }
 
   return (
-    <div className='app'>
+    <div className="">
       <Tasks currentTask={currentTask} tasks={tasks} onAddTask={addTask} onCompleteTask={completeCurrentTask} onCompleteTaskLater={completeCurrentTaskLater} onStartTask={startTask} onRemoveTask={removeTask} />
     </div>
   )
