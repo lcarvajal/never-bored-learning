@@ -4,9 +4,9 @@ import './index.css'
 import { createBrowserRouter, RouterProvider, } from "react-router-dom"
 import routes from './routes/routes';
 import { auth } from './util/firebase';
-import { setTokenForAxiosRequests } from './util/axios';
+import configureAxios from './util/axios';
 
-// Register the service worker
+// Register the service worker for push notifications
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register(`firebase-messaging-sw.js`)
     .then((registration) => {
@@ -17,11 +17,11 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// Set bearer token for requests to server
+// Request configuration
 auth.onAuthStateChanged(function (user) {
   if (user) {
     user.getIdToken().then(function (idToken) {
-      setTokenForAxiosRequests(idToken);
+      configureAxios(import.meta.env.BASE_URL, idToken);
     });
   }
 });
