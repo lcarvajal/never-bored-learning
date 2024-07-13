@@ -16,11 +16,11 @@ export default function LandingPage() {
 
     await delay(3000);
 
-    navigate('sign-up/');
+    navigate('/sign-up');
   }
 
   return (
-    <div className="">
+    <div>
       {isLoading ? <h1>{loadingMessage}</h1> : (
         <form className="flex flex-col gap-2">
           <h1 className="text-3xl mb-6">Create your learner profile</h1>
