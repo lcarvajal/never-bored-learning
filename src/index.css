@@ -16,12 +16,38 @@ body {
   @apply grow;
   @apply items-center;
   @apply justify-center;
+  @apply p-6;
 }
 
 #navbar {
   @apply flex;
   @apply items-center;
   @apply h-20;
-  @apply bg-zinc-800;
+  @apply bg-slate-950;
   @apply px-10;
+  @apply text-violet-400;
+  @apply font-semibold;
+}
+
+input,
+textarea {
+  @apply bg-slate-800;
+  @apply border-none;
+  @apply p-2;
+  @apply text-slate-50;
+  @apply rounded;
+  @apply focus:outline-none;
+  @apply focus:ring-0;
+  @apply focus:border-violet-400;
+  @apply focus:border-solid;
+  @apply focus:border-2;
+}
+
+.button-primary {
+  @apply bg-violet-400;
+  @apply px-4;
+  @apply py-2;
+  @apply rounded;
+  @apply text-slate-900;
+  @apply font-semibold;
 }
