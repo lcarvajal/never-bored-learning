@@ -2,7 +2,7 @@
 
 import Tasks from '../components/Tasks/Tasks';
 import { useState } from 'react';
-import { requestPermission, showNotification } from '../firebase';
+import { requestPermission, showNotification } from '../util/firebase';
 
 interface Task {
   id: number,

@@ -1,6 +1,6 @@
 import { useEffect, useState, ReactNode } from "react";
 import { Navigate } from "react-router-dom";
-import { listenToAuthChanges } from '../firebase';
+import { listenToAuthChanges } from '../util/firebase';
 import { User } from 'firebase/auth';
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
