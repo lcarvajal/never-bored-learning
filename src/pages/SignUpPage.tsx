@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
 export default function SignUpPage() {
+  const navigate = useNavigate();
+
   function handleSignUp() {
     navigate('/learning-overview');
   }
