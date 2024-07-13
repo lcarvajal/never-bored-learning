@@ -22,11 +22,10 @@ body {
 #navbar {
   @apply flex;
   @apply items-center;
-  @apply h-20;
   @apply bg-slate-950;
   @apply px-10;
+  @apply py-4;
   @apply text-violet-400;
-  @apply font-semibold;
 }
 
 input,
@@ -41,6 +40,11 @@ textarea {
   @apply focus:border-violet-400;
   @apply focus:border-solid;
   @apply focus:border-2;
+}
+
+h1 {
+  @apply text-3xl;
+  @apply font-semibold;
 }
 
 .button-primary {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [loadingMessage, setLoadingMessage] = useState("Breaking down learning goal...");
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ export default function LandingPage() {
 
   return (
     <div className="">
-      {isLoading ? <h3>{loadingMessage}</h3> : (
+      {isLoading ? <h1>{loadingMessage}</h1> : (
         <form className="flex flex-col gap-2">
           <h1 className="text-3xl mb-6">Create your learner profile</h1>
           <label htmlFor="goal">What's your name?</label>
