@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import LearningOverviewPage from './pages/LearningOverviewPage.tsx';
 import SignUpPage from './pages/public/SignUpPage.tsx';
 import SignInPage from './pages/public/SignInPage.tsx';
-import TasksPage from './pages/TasksPage.tsx';
 import PrivateRoute from './routes/PrivateRoute.tsx';
 import CreateLearnerProfilePage from './pages/CreateLearnerProfilePage.tsx';
 
@@ -27,16 +26,17 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <PrivateRoute>
+        {/* Change to TasksPage later */}
         <LearningOverviewPage />
       </PrivateRoute>
     ),
     errorElement: <ErrorPage />,
   },
   {
-    path: "/tasks/",
+    path: "/learning-overview/",
     element: (
       <PrivateRoute>
-        <TasksPage />
+        <LearningOverviewPage />
       </PrivateRoute>
     ),
     errorElement: <ErrorPage />,
