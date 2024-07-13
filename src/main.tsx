@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './pages/App.tsx'
-import ErrorPage from "./pages/ErrorPage.tsx";
+import ErrorPage from "./pages/public/ErrorPage.tsx";
 import './index.css'
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
-import LandingPage from './pages/LandingPage.tsx';
 import LearningOverviewPage from './pages/LearningOverviewPage.tsx';
-import SignUpPage from './pages/SignUpPage.tsx';
-import SignInPage from './pages/SignInPage.tsx';
+import SignUpPage from './pages/public/SignUpPage.tsx';
+import SignInPage from './pages/public/SignInPage.tsx';
+import TasksPage from './pages/TasksPage.tsx';
+import PrivateRoute from './routes/PrivateRoute.tsx';
+import CreateLearnerProfilePage from './pages/CreateLearnerProfilePage.tsx';
 
 // Register the service worker
 if ('serviceWorker' in navigator) {
@@ -21,29 +22,40 @@ if ('serviceWorker' in navigator) {
 }
 
 const router = createBrowserRouter([
+  // Private routes
   {
     path: "/",
-    element: <LandingPage />,
+    element: (
+      <PrivateRoute>
+        <LearningOverviewPage />
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />,
   },
   {
-    path: "sign-up/",
+    path: "/tasks/",
+    element: (
+      <PrivateRoute>
+        <TasksPage />
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage />,
+  },
+
+  // Public routes
+  {
+    path: "/sign-up/",
     element: <SignUpPage />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "sign-in/",
+    path: "/sign-in/",
     element: <SignInPage />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "learning-overview/",
-    element: <LearningOverviewPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "tasks/",
-    element: <App />,
+    path: "/create-learner-profile/",
+    element: <CreateLearnerProfilePage />,
     errorElement: <ErrorPage />,
   },
 ]);

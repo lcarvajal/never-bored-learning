@@ -1,3 +1,5 @@
+
+
 import Tasks from '../components/Tasks/Tasks';
 import { useState } from 'react';
 import { requestPermission, showNotification } from '../firebase';
@@ -11,7 +13,7 @@ interface Task {
   type: string,
 }
 
-function App() {
+export default function TasksPage() {
   const [currentTask, setCurrentTask] = useState<Task>({} as Task)
   const [tasks, setTasks] = useState<Task[]>([
     {
@@ -122,5 +124,3 @@ function App() {
     </div>
   )
 }
-
-export default App

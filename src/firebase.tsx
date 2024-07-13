@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from 'firebase/messaging';
+import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -13,6 +14,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
+export const auth = getAuth(app);
 
 export const requestPermission = async () => {
   try {
@@ -63,3 +65,7 @@ export const showNotification = async (title: string, options: NotificationOptio
 onMessage(messaging, (payload) => {
   console.log('Message received. ', payload);
 });
+
+export const listenToAuthChanges = (callback: (user: User | null) => void) => {
+  onAuthStateChanged(auth, callback);
+};

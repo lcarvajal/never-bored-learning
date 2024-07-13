@@ -18,7 +18,7 @@ export default function SignInPage() {
         .then((result) => {
           console.log(result);
           window.localStorage.removeItem('emailForSignIn');
-          navigate('/learning-overview');  // Redirect to your desired route
+          navigate('/');
         })
         .catch((error) => {
           console.error(error.code, error.message);

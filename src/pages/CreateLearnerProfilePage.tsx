@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-export default function LandingPage() {
+export default function CreateLearnerProfilePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState("Breaking down learning goal...");
   const navigate = useNavigate();
