@@ -56,6 +56,7 @@ function App() {
       "type": "Blog post",
     }
   ]);
+  const [isNotificationSent, setIsNoitificationSent] = useState(false);
 
   function addTask(task: Task) {
     setTasks([...tasks, task]);
@@ -84,23 +85,26 @@ function App() {
       requestPermission();
       window.open(taskToStart.url, '_blank')?.focus();
 
-      try {
-        const title = "Off course?";
-        const options = {
-          body: "If you're bored, switch tasks"
-        };
+      if (!isNotificationSent) {
+        setIsNoitificationSent(true);
+        try {
+          const title = "Off course?";
+          const options = {
+            body: "If you're bored, switch tasks"
+          };
 
-        const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-        await delay(10000);
-        const notification = await showNotification(title, options);
-        if (notification) {
-          console.log("Notification shown:", notification);
-        }
-      } catch (error) {
-        if (error instanceof Error) {
-          console.error("Error showing notification:", error.message);
-        } else {
-          console.error("Unknown error showing notification");
+          const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+          await delay(10000);
+          const notification = await showNotification(title, options);
+          if (notification) {
+            console.log("Notification shown:", notification);
+          }
+        } catch (error) {
+          if (error instanceof Error) {
+            console.error("Error showing notification:", error.message);
+          } else {
+            console.error("Unknown error showing notification");
+          }
         }
       }
     }
