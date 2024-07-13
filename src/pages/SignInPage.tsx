@@ -16,6 +16,7 @@ export default function SignInPage() {
       }
       signInWithEmailLink(auth, email!, window.location.href)
         .then((result) => {
+          console.log(result);
           window.localStorage.removeItem('emailForSignIn');
           navigate('/learning-overview');  // Redirect to your desired route
         })

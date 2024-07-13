@@ -8,13 +8,14 @@ export default function SignUpPage() {
   const handleSignUp = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    console.log("Signing up with for public url: ", process.env.PUBLIC_URL);
+    const public_url = process.env.PUBLIC_URL as string;
+
     const actionCodeSettings = {
       // URL you want to redirect back to. The domain (www.example.com) for this
       // URL must be in the authorized domains list in the Firebase Console.
-      // FIXME: - Set url when we host this app
-      url: 'https://www.example.com/finishSignUp?cartId=1234',
+      url: public_url,
       handleCodeInApp: true,  // This must be true in order to send user back to website.
-      dynamicLinkDomain: 'example.page.link'
     };
 
     const auth = getAuth();
@@ -29,6 +30,7 @@ export default function SignUpPage() {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorMessage, errorCode);
         // ...
       });
   };
