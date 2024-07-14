@@ -10,7 +10,7 @@ interface FormValues {
   lastLearnedDescription: string;
 }
 
-export default function CreateLearnerProfilePage(event: React.FormEvent<HTMLFormElement>) {
+export default function CreateLearnerProfilePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState("Breaking down learning goal...");
   const navigate = useNavigate();
