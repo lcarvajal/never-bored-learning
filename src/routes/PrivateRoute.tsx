@@ -21,7 +21,7 @@ const PrivateRoute = ({ children }: { children: ReactNode }) => {
   return (
     <>
       {isLoading ? <h1>Loading...</h1> : (
-        user ? children : <Navigate to="/create-learner-profile" />
+        user ? children : <Navigate to="/get-started" />
       )}
     </>
   );
