@@ -1,7 +1,8 @@
-import './App.css';
+
+
 import Tasks from '../components/Tasks/Tasks';
 import { useState } from 'react';
-import { requestPermission, showNotification } from '../firebase';
+import { requestPermission, showNotification } from '../util/firebase';
 
 interface Task {
   id: number,
@@ -12,7 +13,7 @@ interface Task {
   type: string,
 }
 
-function App() {
+export default function TasksPage() {
   const [currentTask, setCurrentTask] = useState<Task>({} as Task)
   const [tasks, setTasks] = useState<Task[]>([
     {
@@ -56,6 +57,7 @@ function App() {
       "type": "Blog post",
     }
   ]);
+  const [isNotificationSent, setIsNoitificationSent] = useState(false);
 
   function addTask(task: Task) {
     setTasks([...tasks, task]);
@@ -84,23 +86,26 @@ function App() {
       requestPermission();
       window.open(taskToStart.url, '_blank')?.focus();
 
-      try {
-        const title = "Off course?";
-        const options = {
-          body: "If you're bored, switch tasks"
-        };
+      if (!isNotificationSent) {
+        setIsNoitificationSent(true);
+        try {
+          const title = "Off course?";
+          const options = {
+            body: "If you're bored, switch tasks"
+          };
 
-        const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-        await delay(10000);
-        const notification = await showNotification(title, options);
-        if (notification) {
-          console.log("Notification shown:", notification);
-        }
-      } catch (error) {
-        if (error instanceof Error) {
-          console.error("Error showing notification:", error.message);
-        } else {
-          console.error("Unknown error showing notification");
+          const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+          await delay(10000);
+          const notification = await showNotification(title, options);
+          if (notification) {
+            console.log("Notification shown:", notification);
+          }
+        } catch (error) {
+          if (error instanceof Error) {
+            console.error("Error showing notification:", error.message);
+          } else {
+            console.error("Unknown error showing notification");
+          }
         }
       }
     }
@@ -114,10 +119,8 @@ function App() {
   }
 
   return (
-    <div className='app'>
+    <div className="">
       <Tasks currentTask={currentTask} tasks={tasks} onAddTask={addTask} onCompleteTask={completeCurrentTask} onCompleteTaskLater={completeCurrentTaskLater} onStartTask={startTask} onRemoveTask={removeTask} />
     </div>
   )
 }
-
-export default App

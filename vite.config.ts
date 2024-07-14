@@ -15,6 +15,7 @@ export default defineConfig({
       VITE_FIREBASE_API_KEY: JSON.stringify(process.env.VITE_FIREBASE_API_KEY),
       VITE_FIREBASE_APP_ID: JSON.stringify(process.env.VITE_FIREBASE_APP_ID),
       VITE_FIREBASE_WEB_PUSH_CERTIFICATE_KEY: JSON.stringify(process.env.VITE_FIREBASE_WEB_PUSH_CERTIFICATE_KEY),
+      VITE_SERVER_URL: JSON.stringify(process.env.VITE_SERVER_URL),
     }
   }
 })

@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './pages/App.tsx'
-import ErrorPage from "./pages/ErrorPage.tsx";
 import './index.css'
-import { createBrowserRouter, RouterProvider, } from "react-router-dom";
-import LandingPage from './pages/LandingPage.tsx';
+import { createBrowserRouter, RouterProvider, } from "react-router-dom"
+import routes from './routes/routes';
+import { auth } from './util/firebase';
+import { setRequestBaseURL, setRequestToken } from './util/axios';
 
-// Register the service worker
+// Register the service worker for push notifications
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register(`firebase-messaging-sw.js`)
     .then((registration) => {
@@ -17,18 +17,17 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <LandingPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "tasks/",
-    element: <App />,
-    errorElement: <ErrorPage />,
-  },
-]);
+// Request configuration
+setRequestBaseURL(import.meta.env.VITE_SERVER_URL)
+auth.onAuthStateChanged(function (user) {
+  if (user) {
+    user.getIdToken().then(function (idToken) {
+      setRequestToken(idToken);
+    });
+  }
+});
+
+const router = createBrowserRouter([...routes]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
