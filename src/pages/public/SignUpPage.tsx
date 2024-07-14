@@ -1,9 +1,13 @@
 import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
 import { useState } from "react";
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 export default function SignUpPage() {
   const [didSendEmail, setDidSendEmail] = useState(false);
   const [email, setEmail] = useState("");
+  const { state } = useLocation();
+
 
   const handleSignUp = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,6 +29,25 @@ export default function SignUpPage() {
         // Save the email locally so you don't need to ask the user for it again
         // if they open the link on the same device.
         window.localStorage.setItem('emailForSignIn', email);
+
+        if (state) {
+          axios.post('profile',
+            [{
+              name: state.name,
+              email: email,
+              goal: state.goal,
+              reason: state.reason,
+              deadline: state.deadline,
+              lastLearnedDescription: state.lastLearnedDescription
+            }])
+            .then((response) => {
+              console.log(response.data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+
         setDidSendEmail(true);
       })
       .catch((error) => {
