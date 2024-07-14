@@ -30,24 +30,6 @@ export default function SignUpPage() {
         // if they open the link on the same device.
         window.localStorage.setItem('emailForSignIn', email);
 
-        if (state) {
-          axios.post('profile',
-            [{
-              name: state.name,
-              email: email,
-              goal: state.goal,
-              reason: state.reason,
-              deadline: state.deadline,
-              lastLearnedDescription: state.lastLearnedDescription
-            }])
-            .then((response) => {
-              console.log(response.data);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        }
-
         setDidSendEmail(true);
       })
       .catch((error) => {
@@ -55,6 +37,25 @@ export default function SignUpPage() {
         const errorMessage = error.message;
         console.log(errorMessage, errorCode);
         // ...
+      })
+      .finally(() => {
+        if (state) {
+          axios.post('profiles',
+            {
+              name: state.name,
+              email: email,
+              goal: state.goal,
+              reason: state.reason,
+              deadline: state.deadline,
+              lastLearnedDescription: state.lastLearnedDescription
+            })
+            .then((response) => {
+              console.log(response.data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
       });
   };
 

@@ -4,7 +4,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider, } from "react-router-dom"
 import routes from './routes/routes';
 import { auth } from './util/firebase';
-import configureAxios from './util/axios';
+import { setRequestBaseURL, setRequestToken } from './util/axios';
 
 // Register the service worker for push notifications
 if ('serviceWorker' in navigator) {
@@ -18,10 +18,11 @@ if ('serviceWorker' in navigator) {
 }
 
 // Request configuration
+setRequestBaseURL(import.meta.env.VITE_SERVER_URL)
 auth.onAuthStateChanged(function (user) {
   if (user) {
     user.getIdToken().then(function (idToken) {
-      configureAxios(import.meta.env.VITE_SERVER_URL, idToken);
+      setRequestToken(idToken);
     });
   }
 });
