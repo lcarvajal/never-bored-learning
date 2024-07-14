@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 export default function CreateLearnerProfilePage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -7,16 +8,24 @@ export default function CreateLearnerProfilePage() {
   const navigate = useNavigate();
 
   async function handleClick() {
-    setIsLoading(true);
+    // setIsLoading(true);
 
-    const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-    await delay(2000);
+    // const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+    // await delay(2000);
 
-    setLoadingMessage("Assembling resources based on your profile and learning goal...");
+    // setLoadingMessage("Assembling resources based on your profile and learning goal...");
 
-    await delay(3000);
+    // await delay(3000);
 
-    navigate('/sign-up');
+    // navigate('/sign-up');
+
+    axios.get('userid')
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (

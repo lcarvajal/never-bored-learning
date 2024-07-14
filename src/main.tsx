@@ -21,7 +21,7 @@ if ('serviceWorker' in navigator) {
 auth.onAuthStateChanged(function (user) {
   if (user) {
     user.getIdToken().then(function (idToken) {
-      configureAxios(import.meta.env.BASE_URL, idToken);
+      configureAxios(import.meta.env.VITE_SERVER_URL, idToken);
     });
   }
 });

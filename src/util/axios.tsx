@@ -2,7 +2,7 @@ import axios from 'axios';
 
 function setTokenForAxiosRequests(token: string) {
   axios.interceptors.request.use(async config => {
-    config.headers.token = token
+    config.headers.Authorization = `Bearer ${token}`
     return config
   }, (error) => {
     return Promise.reject(error)
