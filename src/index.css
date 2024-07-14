@@ -49,9 +49,11 @@ h1 {
 
 .button-primary {
   @apply bg-violet-400;
+  @apply hover:bg-violet-600;
   @apply px-4;
   @apply py-2;
   @apply rounded;
   @apply text-slate-900;
+  @apply hover:text-slate-50;
   @apply font-semibold;
 }

@@ -2,7 +2,6 @@ import LearningOverviewPage from '../pages/LearningOverviewPage.tsx';
 import PrivateRoute from './PrivateRoute.tsx';
 import ErrorPage from '../pages/public/ErrorPage.tsx';
 import SignUpPage from '../pages/public/SignUpPage.tsx';
-import SignInPage from '../pages/public/SignInPage.tsx';
 import CreateLearnerProfilePage from '../pages/public/CreateLearnerProfilePage.tsx';
 import LandingPage from '../pages/public/LandingPage.tsx';
 
@@ -39,11 +38,6 @@ export default [
   {
     path: "/sign-up/",
     element: <SignUpPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/sign-in/",
-    element: <SignInPage />,
     errorElement: <ErrorPage />,
   },
   {

@@ -6,8 +6,6 @@ interface FormValues {
   name: string;
   goal: string;
   reason: string;
-  deadline: string;
-  lastLearnedDescription: string;
 }
 
 export default function CreateLearnerProfilePage() {
@@ -18,8 +16,6 @@ export default function CreateLearnerProfilePage() {
     name: '',
     goal: '',
     reason: '',
-    deadline: '',
-    lastLearnedDescription: ''
   });
 
   async function handleClick() {
@@ -43,62 +39,39 @@ export default function CreateLearnerProfilePage() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-6 w-full md:w-1/2 lg:w-1/3">
       {isLoading ? <h1>{loadingMessage}</h1> : (
-        <form className="flex flex-col gap-2">
-          <h1 className="text-3xl mb-6">Create your learner profile</h1>
-          <label htmlFor="name">What's your name?</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formValues.name}
-            onChange={handleInputChange}
-          />
-          <label htmlFor="goal">What do you want to learn?</label>
-          <textarea
-            id="goal"
-            name="goal"
-            value={formValues.goal}
-            maxLength={200}
-            minLength={100}
-            onChange={handleInputChange}
-          />
-          <label htmlFor="reason">Why do you want to learn it?</label>
-          <textarea
-            id="reason"
-            name="reason"
-            value={formValues.reason}
-            maxLength={200}
-            minLength={100}
-            onChange={handleInputChange}
-          />
-          <label htmlFor="deadline">Do you need to achieve your learning goal by a certain date? (optional)</label>
-          <input
-            type="date"
-            id="deadline"
-            name="deadline"
-            value={formValues.deadline}
-            onChange={handleInputChange}
-          />
-          <label htmlFor="last-learned-description">What's the last thing you learned really well? What worked for you and what didn't?</label>
-          <textarea
-            className="mb-6"
-            id="last-learned-description"
-            name="lastLearnedDescription"
-            value={formValues.lastLearnedDescription}
-            maxLength={400}
-            minLength={100}
-            onChange={handleInputChange}
-          />
-          <button
-            className="button-primary"
-            type="button"
-            onClick={handleClick}
-          >
-            Generate Lesson Plan
-          </button>
-        </form>
+        <>
+          <h1 className="text-3xl">Set your goal</h1>
+          <form className="flex flex-col gap-2" onSubmit={handleClick}>
+            <label htmlFor="name">What's your name?</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formValues.name}
+              onChange={handleInputChange}
+              required
+            />
+            <label htmlFor="goal">What do you want to learn and why?</label>
+            <textarea
+              className="h-48"
+              id="goal"
+              name="goal"
+              value={formValues.goal}
+              maxLength={250}
+              minLength={60}
+              onChange={handleInputChange}
+              required
+            />
+            <button
+              type="submit"
+              className="button-primary mt-4"
+            >
+              Generate Lesson Plan
+            </button>
+          </form>
+        </>
       )}
     </div>
   )

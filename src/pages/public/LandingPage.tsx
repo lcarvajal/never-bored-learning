@@ -10,8 +10,9 @@ export default function LandingPage() {
     <>
       {showSignUpForm ? <PasswordlessEmailLoginForm accountAction="SIGNIN" /> : (
         <div className="flex flex-col gap-6">
-          <h1>Ready to stick to your learning goal?</h1>
-          <button className="button-primary sm:mx-20" onClick={() => navigate('/create-learner-profile')}>Get Started</button>
+          <img src="./stick.png" alt="stick" className="w-24 mx-auto" />
+          <h1>Stick to your learning goal</h1>
+          <button className="button-primary sm:mx-20" onClick={() => navigate('/create-learner-profile')}>Get started</button>
           <button className="text-violet-400" onClick={() => setShowSignUpForm(true)}>Already have an account?</button>
         </div>
       )
