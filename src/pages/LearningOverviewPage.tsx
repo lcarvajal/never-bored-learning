@@ -13,31 +13,27 @@ interface RoadmapItem {
 }
 
 export default function LearningOverviewPage() {
-  const [didRequestRoadmap, setDidRequestRoadmap] = useState(false);
   const [roadmap, setRoadmap] = useState<Roadmap>({} as Roadmap);
 
   useEffect(() => {
-    if (!didRequestRoadmap) {
-      setDidRequestRoadmap(true);
-      axios.get('roadmaps')
-        .then((response) => {
-          setRoadmap(response.data);
-        })
-        .catch((error) => {
-          if (error.response && error.response.status === 404) {
-            console.log('404 error');
-            axios.post('roadmaps')
-              .then((response) => {
-                setRoadmap(response.data);
-              })
-              .catch((error) => {
-                console.log(error)
-              })
-          } else {
-            console.log(error);
-          }
-        });
-    }
+    axios.get('roadmaps')
+      .then((response) => {
+        setRoadmap(response.data);
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 404) {
+          console.log('404 error');
+          axios.post('roadmaps')
+            .then((response) => {
+              setRoadmap(response.data);
+            })
+            .catch((error) => {
+              console.log(error)
+            })
+        } else {
+          console.log(error);
+        }
+      });
   }, []);
 
   return (
