@@ -21,6 +21,7 @@ export default function LearningOverviewPage() {
         setRoadmap(response.data);
       })
       .catch((error) => {
+        console.log("HERE IS THE ERROR M")
         console.log(error)
         if (error.response.status === 404) {
           console.log('404 error');
