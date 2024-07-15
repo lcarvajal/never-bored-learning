@@ -1,5 +1,3 @@
-import "./Task.css"
-
 interface TaskProps {
   id: number
   title: string

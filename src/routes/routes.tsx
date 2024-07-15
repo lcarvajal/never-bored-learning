@@ -5,6 +5,7 @@ import SignUpPage from '../pages/public/SignUpPage.tsx';
 import CreateLearnerProfilePage from '../pages/public/CreateLearnerProfilePage.tsx';
 import LandingPage from '../pages/public/LandingPage.tsx';
 import ProfilePage from '../pages/ProfilePage.tsx';
+import TasksPage from '../pages/TasksPage.tsx';
 
 export default [
   {
@@ -12,7 +13,6 @@ export default [
     path: "/",
     element: (
       <PrivateRoute>
-        {/* Change to TasksPage later */}
         <LearningOverviewPage />
       </PrivateRoute>
     ),
@@ -23,6 +23,15 @@ export default [
     element: (
       <PrivateRoute>
         <LearningOverviewPage />
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/tasks/",
+    element: (
+      <PrivateRoute>
+        <TasksPage />
       </PrivateRoute>
     ),
     errorElement: <ErrorPage />,

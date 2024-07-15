@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { mockRoadmap } from '../util/mock';
+import { useNavigate } from 'react-router-dom';
 
 interface Roadmap {
   learning_goal: string,
@@ -13,9 +15,12 @@ interface RoadmapItem {
 }
 
 export default function LearningOverviewPage() {
+  const navigate = useNavigate();
   const [roadmap, setRoadmap] = useState<Roadmap>({} as Roadmap);
 
   useEffect(() => {
+    // setRoadmap(mockRoadmap);
+
     axios.get('roadmaps')
       .then((response) => {
         setRoadmap(response.data);
@@ -50,9 +55,9 @@ export default function LearningOverviewPage() {
                   <h2>{item.name}</h2>
                   <p>{item.description}</p>
                 </div>
-                <div className="w-20 text-center">
-                  {/* <button className="button-primary">Start</button> */}
-                </div>
+                {/* <div className="w-20 text-center">
+                  <button className="button-primary" onClick={() => { navigate('/tasks', { state: item }) }}>Start</button>
+                </div> */}
               </div>
             ))}
           </div>

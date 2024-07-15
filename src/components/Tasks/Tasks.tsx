@@ -1,5 +1,4 @@
-import "./Tasks.css"
-import Task from "./Task/Task"
+import Task from "./Task"
 
 interface Task {
   id: number
@@ -30,10 +29,9 @@ interface TasksProps {
 
 function CurrentTask(props: CurrentTaskProps) {
 
+
   return (
     <div className="current-task">
-      <h1>Get Started with AI</h1>
-      <p>We put together resources on basic concepts and beginner-friendly tutorials.</p>
       {props.task.id ? (
         <>
           <h2>Now Learning</h2>
