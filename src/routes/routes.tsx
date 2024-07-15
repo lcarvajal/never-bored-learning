@@ -4,6 +4,7 @@ import ErrorPage from '../pages/public/ErrorPage.tsx';
 import SignUpPage from '../pages/public/SignUpPage.tsx';
 import CreateLearnerProfilePage from '../pages/public/CreateLearnerProfilePage.tsx';
 import LandingPage from '../pages/public/LandingPage.tsx';
+import ProfilePage from '../pages/ProfilePage.tsx';
 
 export default [
   {
@@ -22,6 +23,15 @@ export default [
     element: (
       <PrivateRoute>
         <LearningOverviewPage />
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/profile/",
+    element: (
+      <PrivateRoute>
+        <ProfilePage />
       </PrivateRoute>
     ),
     errorElement: <ErrorPage />,
