@@ -7,7 +7,7 @@ interface FormProps {
   accountAction: string
 }
 
-export default function PasswordlessEmailLoginForm(props: FormProps) {
+export default function PasswordlessEmailLoginForm(props: FormProps = { accountAction: "SIGNIN" }) {
   const navigate = useNavigate();
   const { state } = useLocation();
   const provider = new GoogleAuthProvider();
