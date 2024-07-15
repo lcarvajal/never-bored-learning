@@ -10,7 +10,6 @@ export default defineConfig({
     basicSsl()
   ],
   define: {
-    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }],
     'process.env': {
       VITE_PUBLIC_URL: JSON.stringify(process.env.VITE_PUBLIC_URL),
       VITE_FIREBASE_API_KEY: JSON.stringify(process.env.VITE_FIREBASE_API_KEY),
