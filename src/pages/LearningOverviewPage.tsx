@@ -13,7 +13,7 @@ interface RoadmapItem {
 }
 
 export default function LearningOverviewPage() {
-  const [roadmap, setRoadmap] = useState<Roadmap>({} as Roadmap);
+  const [roadmap, setRoadmap] = useState<Roadmap>({ goal: "", items: [] } as Roadmap);
 
   useEffect(() => {
     axios.get('roadmaps')
