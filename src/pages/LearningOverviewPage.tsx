@@ -21,7 +21,7 @@ export default function LearningOverviewPage() {
         setRoadmap(response.data);
       })
       .catch((error) => {
-        if (error.response && error.response.status === 404) {
+        if (error.response.status === 404) {
           console.log('404 error');
           axios.post('roadmaps')
             .then((response) => {
