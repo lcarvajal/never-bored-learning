@@ -25,6 +25,7 @@ export default function PasswordlessEmailLoginForm(props: FormProps = { accountA
         const user = result.user;
 
         if (state) {
+          console.log("State set");
           axios.post('profiles',
             {
               uid: user.uid,
@@ -44,6 +45,7 @@ export default function PasswordlessEmailLoginForm(props: FormProps = { accountA
             });
         }
         else {
+          console.log("State not set");
           navigate('/learning-overview');
         }
       }).catch((error) => {
