@@ -15,7 +15,7 @@ interface RoadmapItem {
 }
 
 export default function LearningOverviewPage() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [roadmap, setRoadmap] = useState<Roadmap>({} as Roadmap);
 
   useEffect(() => {
