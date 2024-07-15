@@ -26,6 +26,7 @@ export default function PasswordlessEmailLoginForm(props: FormProps = { accountA
 
         if (state) {
           console.log("State set");
+          console.log(state);
           axios.post('profiles',
             {
               uid: user.uid,
