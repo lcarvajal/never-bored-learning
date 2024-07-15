@@ -27,6 +27,15 @@ auth.onAuthStateChanged(function (user) {
   }
 });
 
+// Refresh token when expired
+auth.onIdTokenChanged(function (user) {
+  if (user) {
+    user.getIdToken().then(function (idToken) {
+      setRequestToken(idToken);
+    });
+  }
+})
+
 const router = createBrowserRouter([...routes]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
