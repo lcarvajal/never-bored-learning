@@ -19,6 +19,7 @@ if ('serviceWorker' in navigator) {
 
 // Request configuration
 setRequestBaseURL(import.meta.env.VITE_SERVER_URL)
+console.log("base url", import.meta.env.VITE_SERVER_URL)
 auth.onAuthStateChanged(function (user) {
   if (user) {
     user.getIdToken().then(function (idToken) {
