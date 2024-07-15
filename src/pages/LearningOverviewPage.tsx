@@ -18,6 +18,9 @@ export default function LearningOverviewPage() {
   useEffect(() => {
     axios.get('roadmaps')
       .then((response) => {
+        console.log("HERE IS THE RESPONSE")
+        console.log(response);
+        console.log(response.data);
         setRoadmap(response.data);
       })
       .catch((error) => {
