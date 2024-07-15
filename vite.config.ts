@@ -10,6 +10,7 @@ export default defineConfig({
     basicSsl()
   ],
   define: {
+    'rewrites': [{ "source": "/(.*)", "destination": "/" }],
     'process.env': {
       VITE_PUBLIC_URL: JSON.stringify(process.env.VITE_PUBLIC_URL),
       VITE_FIREBASE_API_KEY: JSON.stringify(process.env.VITE_FIREBASE_API_KEY),
@@ -17,5 +18,5 @@ export default defineConfig({
       VITE_FIREBASE_WEB_PUSH_CERTIFICATE_KEY: JSON.stringify(process.env.VITE_FIREBASE_WEB_PUSH_CERTIFICATE_KEY),
       VITE_SERVER_URL: JSON.stringify(process.env.VITE_SERVER_URL),
     }
-  }
+  },
 })
