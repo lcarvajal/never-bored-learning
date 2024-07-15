@@ -29,8 +29,12 @@ auth.onAuthStateChanged(function (user) {
 
 // Refresh token when expired
 auth.onIdTokenChanged(function (user) {
+  console.log("Refresh token...")
+  console.log("user", user)
   if (user) {
     user.getIdToken().then(function (idToken) {
+      console.log("Refresh token...")
+      console.log("user", user)
       setRequestToken(idToken);
     });
   }
