@@ -18,16 +18,10 @@ export default function LearningOverviewPage() {
   useEffect(() => {
     axios.get('roadmaps')
       .then((response) => {
-        console.log("HERE IS THE RESPONSE")
-        console.log(response);
-        console.log(response.data);
         setRoadmap(response.data);
       })
       .catch((error) => {
-        console.log("HERE IS THE ERROR M")
-        console.log(error)
         if (error.response.status === 404) {
-          console.log('404 error');
           axios.post('roadmaps')
             .then((response) => {
               setRoadmap(response.data);
@@ -45,15 +39,11 @@ export default function LearningOverviewPage() {
     <div className="flex flex-col grow gap-6">
       {roadmap && roadmap.modules ? (
         <>
-          <div className="border-slate-200 border-2 p-4 rounded-xl flex flex-col gap-4 mt-12">
+          <div className="rounded-xl flex flex-col gap-4 mt-12">
             <h1>Learning Roadmap</h1>
             <p>{roadmap.learning_goal}</p>
-            {/* <div className="grid grid-cols-2 gap-4 w-60 ml-auto">
-          <button className="button-primary" onClick={handleOpenCurrentLearningGoal}>Open</button>
-          <button className="button-primary">Complete</button>
-        </div> */}
           </div>
-          <div className="flex flex-col gap-4 w-10/12 mx-auto">
+          <div className="flex flex-col gap-4">
             {roadmap.modules.map((item) => (
               <div key={item.id} className="border-slate-200 border-2 p-4 rounded-xl flex flex-row gap-4">
                 <div className="flex flex-col grow">
