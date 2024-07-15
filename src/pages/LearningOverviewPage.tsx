@@ -52,7 +52,7 @@ export default function LearningOverviewPage() {
             {roadmap.modules.map((item) => (
               <div key={item.id} className="border-slate-200 border-2 p-4 rounded-xl flex flex-row gap-4">
                 <div className="flex flex-col grow">
-                  <h2>{item.name}</h2>
+                  <p className="font-bold">{item.name}</p>
                   <p>{item.description}</p>
                 </div>
                 {/* <div className="w-20 text-center">
