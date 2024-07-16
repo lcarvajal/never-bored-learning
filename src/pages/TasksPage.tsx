@@ -1,104 +1,94 @@
-
-
 import Tasks from '../components/Tasks/Tasks';
 import { useEffect, useState } from 'react';
-import { requestPermission, showNotification } from '../util/firebase';
 import { useLocation } from 'react-router-dom';
+import TaskCategories from '../components/Tasks/TaskCategories';
+import { mockCategories, mockTasks } from '../util/mock';
+import axios from 'axios';
 
 interface Task {
   id: number,
   title: string,
-  year: number,
   url: string,
   description: string,
-  type: string,
+  type: string
+}
+
+interface Category {
+  name: string;
+  description: string;
 }
 
 export default function TasksPage() {
+  const tasksCache: { [categoryName: string]: Task[] } = {};
   const { state } = useLocation();
-  const [currentTask, setCurrentTask] = useState<Task>({} as Task)
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [isNotificationSent, setIsNoitificationSent] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
     if (state) {
-      const title = state.name;
-      const description = state.description;
+      const learning_goal = state.learning_goal;
+      const itemName = state.roadmapItem.name;
+      const itemDescription = state.roadmapItem.description;
 
-      setTitle(title);
-      setDescription(description);
+      setTitle(itemName);
+      setDescription(itemDescription);
+      setSelectedCategoryIndex(0);
+
+      if (import.meta.env.DEV) {
+        setCategories(mockCategories);
+        setTasks(mockTasks);
+      }
+      else {
+        axios.post('categories', {
+          learning_goal: learning_goal,
+          name: itemName,
+          desctiption: itemDescription
+        }).then((response) => {
+          setCategories(response.data);
+          setCurrentCategory(0);
+        }).catch((error) => {
+          console.log(error);
+        });
+      }
     }
     else {
       console.log("No state")
     }
   }, [state]);
 
-  function addTask(task: Task) {
-    setTasks([...tasks, task]);
+  function handleSelectCategory(index: number) {
+    setSelectedCategoryIndex(index);
+    setTasks([]);
+    setCurrentCategory(index);
   }
 
-  function completeCurrentTask() {
-    setCurrentTask({} as Task);
-  }
-
-  function completeCurrentTaskLater() {
-    setTasks([...tasks, currentTask]);
-    setCurrentTask({} as Task);
-  }
-
-  async function startTask(id: number) {
-    const taskToStart = tasks.find(t => t.id === id);
-    let tasksWithoutTaskToStart: Task[] = tasks.filter(t => t.id !== id);
-
-    if (currentTask.id && currentTask.id != id) {
-      tasksWithoutTaskToStart.push(currentTask);
-    }
-
-    if (taskToStart) {
-      setCurrentTask(taskToStart);
-      setTasks(tasksWithoutTaskToStart);
-      requestPermission();
-      window.open(taskToStart.url, '_blank')?.focus();
-
-      if (!isNotificationSent) {
-        setIsNoitificationSent(true);
-        try {
-          const title = "Off course?";
-          const options = {
-            body: "If you're bored, switch tasks"
-          };
-
-          const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-          await delay(10000);
-          const notification = await showNotification(title, options);
-          if (notification) {
-            console.log("Notification shown:", notification);
-          }
-        } catch (error) {
-          if (error instanceof Error) {
-            console.error("Error showing notification:", error.message);
-          } else {
-            console.error("Unknown error showing notification");
-          }
-        }
-      }
+  function setCurrentCategory(index: number) {
+    if (categories[index].name in tasksCache) {
+      setTasks(tasksCache[categories[index].name]);
     }
     else {
-      console.error(`Task with id ${id} not found`);
+      axios.post('tasks', {
+        description: categories[index].description
+      }).then((response) => {
+        tasksCache[categories[index].name] = response.data
+        setTasks(response.data);
+      }).catch((error) => {
+        console.log(error);
+      })
     }
-  }
-
-  function removeTask(id: number) {
-    setTasks(tasks.filter(t => t.id !== id));
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-4">
       <h1>{title}</h1>
       <p>{description}</p>
-      <Tasks currentTask={currentTask} tasks={tasks} onAddTask={addTask} onCompleteTask={completeCurrentTask} onCompleteTaskLater={completeCurrentTaskLater} onStartTask={startTask} onRemoveTask={removeTask} />
+      <TaskCategories categories={categories} selectedIndex={selectedCategoryIndex} onSelectCategory={handleSelectCategory} />
+      {
+        tasks.length > 0 ? <Tasks tasks={tasks} /> : <p>Loading...</p>
+      }
     </div>
   )
 }

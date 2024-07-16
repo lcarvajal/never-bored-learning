@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-// import { mockRoadmap } from '../util/mock';
-// import { useNavigate } from 'react-router-dom';
+import { mockRoadmap } from '../util/mock';
+import { useNavigate } from 'react-router-dom';
 
 interface Roadmap {
   learning_goal: string,
@@ -15,29 +15,32 @@ interface RoadmapItem {
 }
 
 export default function LearningOverviewPage() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [roadmap, setRoadmap] = useState<Roadmap>({} as Roadmap);
 
   useEffect(() => {
-    // setRoadmap(mockRoadmap);
-
-    axios.get('roadmaps')
-      .then((response) => {
-        setRoadmap(response.data);
-      })
-      .catch((error) => {
-        if (error.response.status === 404) {
-          axios.post('roadmaps')
-            .then((response) => {
-              setRoadmap(response.data);
-            })
-            .catch((error) => {
-              console.log(error)
-            })
-        } else {
-          console.log(error);
-        }
-      });
+    if (import.meta.env.DEV) {
+      setRoadmap(mockRoadmap);
+    }
+    else {
+      axios.get('roadmaps')
+        .then((response) => {
+          setRoadmap(response.data);
+        })
+        .catch((error) => {
+          if (error.response.status === 404) {
+            axios.post('roadmaps')
+              .then((response) => {
+                setRoadmap(response.data);
+              })
+              .catch((error) => {
+                console.log(error)
+              })
+          } else {
+            console.log(error);
+          }
+        });
+    }
   }, []);
 
   return (
@@ -50,14 +53,14 @@ export default function LearningOverviewPage() {
           </div>
           <div className="flex flex-col gap-4">
             {roadmap.modules.map((item) => (
-              <div key={item.id} className="border-slate-200 border-2 p-4 rounded-xl flex flex-row gap-4">
-                <div className="flex flex-col grow">
+              <div key={item.id} className="group border-slate-200 border-2 p-4 rounded-xl flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col grow w-full">
                   <p className="font-bold">{item.name}</p>
                   <p>{item.description}</p>
                 </div>
-                {/* <div className="w-20 text-center">
-                  <button className="button-primary" onClick={() => { navigate('/tasks', { state: item }) }}>Start</button>
-                </div> */}
+                <div className="flex flex-col w-full sm:w-auto text-center justify-center">
+                  <button className="button-primary sm:invisible sm:group-hover:visible ml-auto" onClick={() => { navigate('/tasks', { state: { roadmapItem: item, learning_goal: roadmap.learning_goal } }) }}>Open</button>
+                </div>
               </div>
             ))}
           </div>

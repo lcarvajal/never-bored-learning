@@ -1,26 +1,25 @@
 interface TaskProps {
   id: number
   title: string
-  year: number
   url: string
   description: string
   type: string
-  onStartTask: (id: number) => void
-  onRemoveTask: (id: number) => void
 }
 
 export default function Task(props: TaskProps) {
+  function handleOnStartTask() {
+    window.open(props.url, '_blank');
+  }
+
   return (
-    <div id={props.id.toString()} className="task">
-      {/* <div className="task__close_button">
-        <button onClick={() => props.onRemoveTask(props.id)}>X</button>
-      </div> */}
-      <div className="task__title">
-        <h4>{props.title}</h4>
+    <div id={props.id.toString()} className="flex flex-row justify-between p-4 bg-zinc-900 text-slate-50 rounded-xl">
+      <div className="flex flex-col">
         <p><span>{props.type}</span></p>
+        <h4 className="font-semibold text-lg">{props.title}</h4>
+        <p>{props.description}</p>
       </div>
-      <div className="task__start_button">
-        <button onClick={() => props.onStartTask(props.id)}>↗</button>
+      <div className="">
+        <button onClick={handleOnStartTask}>↗</button>
       </div>
     </div>
   )
