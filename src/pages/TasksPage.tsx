@@ -6,7 +6,6 @@ import { mockCategories, mockTasks } from '../util/mock';
 import axios from 'axios';
 
 interface Task {
-  id: number,
   title: string,
   url: string,
   content: string,
@@ -75,9 +74,17 @@ export default function TasksPage() {
       }).then((response) => {
         const resources = response.data.results
         console.log("resources", resources)
-        const responseTasks = resources.map((responseTask) => {
+
+        interface ResponseTask {
+          "title": string,
+          "url": string,
+          "content": string,
+          "score": number,
+          "raw_content": string | null
+        }
+
+        const responseTasks = resources.map((responseTask: ResponseTask) => {
           return {
-            id: responseTask.id,
             title: responseTask.title,
             url: responseTask.url,
             content: responseTask.content,

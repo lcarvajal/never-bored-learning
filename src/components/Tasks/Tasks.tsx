@@ -1,7 +1,6 @@
 import Task from "./Task"
 
 interface Task {
-  id: number
   title: string
   url: string
   content: string

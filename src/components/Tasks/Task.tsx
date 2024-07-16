@@ -1,5 +1,4 @@
 interface TaskProps {
-  id: number
   title: string
   url: string
   content: string
@@ -12,7 +11,7 @@ export default function Task(props: TaskProps) {
   }
 
   return (
-    <div id={props.id.toString()} className="flex flex-row justify-between p-4 bg-zinc-900 text-slate-50 rounded-xl">
+    <div id={props.title} className="flex flex-row justify-between p-4 bg-zinc-900 text-slate-50 rounded-xl">
       <div className="flex flex-col">
         <p><span>{props.type}</span></p>
         <h4 className="font-semibold text-lg">{props.title}</h4>
