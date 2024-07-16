@@ -86,8 +86,9 @@ export default function TasksPage() {
   }
 
   function getCurrentTasks() {
+    const index = selectedCategoryIndex;
     axios.post('tasks', {
-      description: categories[selectedCategoryIndex].description
+      description: categories[index].description
     }).then((response) => {
       const resources = response.data.results
       console.log("resources", resources)
@@ -110,9 +111,12 @@ export default function TasksPage() {
       })
 
       const tempCache = { ...tasksCache };
-      tempCache[categories[selectedCategoryIndex].name] = responseTasks;
+      tempCache[categories[index].name] = responseTasks;
       setTasksCache(tempCache);
-      setTasks(responseTasks);
+
+      if (index === selectedCategoryIndex) {
+        setTasks(responseTasks);
+      }
     }).catch((error) => {
       console.log(error);
     })
