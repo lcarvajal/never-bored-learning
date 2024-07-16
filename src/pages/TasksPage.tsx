@@ -18,7 +18,7 @@ interface Category {
 }
 
 export default function TasksPage() {
-  const tasksCache: { [categoryName: string]: Task[] } = {};
+  const [tasksCache, setTasksCache] = useState<Record<string, Task[]>>({});
   const { state } = useLocation();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -38,6 +38,13 @@ export default function TasksPage() {
       if (import.meta.env.DEV) {
         setCategories(mockCategories);
         setTasks(mockTasks);
+
+        const tempCache: Record<string, Task[]> = {};
+        for (let i = 0; i < mockCategories.length; i++) {
+          const category = mockCategories[i];
+          tempCache[category.name] = mockTasks;
+        }
+        setTasksCache(tempCache);
       }
       else {
         axios.post('categories', {
@@ -48,8 +55,6 @@ export default function TasksPage() {
           setCategories(response.data.categories);
         }).catch((error) => {
           console.log(error);
-        }).finally(() => {
-          setCurrentCategory(0);
         });
       }
     }
@@ -65,11 +70,17 @@ export default function TasksPage() {
   }
 
   function setCurrentCategory(index: number) {
-    if (categories[index].name in tasksCache) {
-      setTasks(tasksCache[categories[index].name]);
+    console.log("Here is the cache: ", tasksCache)
+    if (import.meta.env.DEV) {
+      setTasks(mockTasks);
     }
     else {
-      getCurrentTasks();
+      if (tasksCache[categories[index].name]) {
+        setTasks(tasksCache[categories[index].name]);
+      }
+      else {
+        getCurrentTasks();
+      }
     }
   }
 
@@ -97,7 +108,9 @@ export default function TasksPage() {
         }
       })
 
-      tasksCache[categories[selectedCategoryIndex].name] = responseTasks
+      const tempCache = { ...tasksCache };
+      tempCache[categories[selectedCategoryIndex].name] = responseTasks;
+      setTasksCache(tempCache);
       setTasks(responseTasks);
     }).catch((error) => {
       console.log(error);
@@ -110,11 +123,10 @@ export default function TasksPage() {
       <p>{description}</p>
       <TaskCategories categories={categories} selectedIndex={selectedCategoryIndex} onSelectCategory={handleSelectCategory} />
       {
-        tasks.length > 0 ? <Tasks tasks={tasks} /> : (
+        (tasks.length > 0 && selectedCategoryIndex !== -1) ? <Tasks tasks={tasks} /> : (
           <>
             {
               selectedCategoryIndex !== -1 ? <p>Loading...</p> : <p>Select a category to get started</p>
-
             }
           </>
         )
