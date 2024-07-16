@@ -127,10 +127,7 @@ export default function TasksPage() {
       const tempCache = { ...tasksCache };
       tempCache[categories[index].name] = responseTasks;
       setTasksCache(tempCache);
-
-      if (index === selectedCategoryIndex) {
-        setTasks(responseTasks);
-      }
+      setTasks(responseTasks);
     }).catch((error) => {
       console.log(error);
     }).finally(() => {
