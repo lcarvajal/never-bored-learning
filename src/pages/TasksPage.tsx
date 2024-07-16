@@ -54,7 +54,10 @@ export default function TasksPage() {
           name: itemName,
           description: itemDescription
         }).then((response) => {
-          setCategories(response.data.categories);
+          const categories = response.data.categories;
+          if (categories.length > 0) {
+            setCategories(response.data.categories);
+          }
         }).catch((error) => {
           console.log(error);
         }).finally(() => {
@@ -77,6 +80,7 @@ export default function TasksPage() {
 
   function setCurrentCategory(index: number) {
     setSelectedCategoryIndex(index);
+    console.log("Selected category: ", selectedCategoryIndex)
     console.log("Here is the cache: ", tasksCache)
     if (import.meta.env.DEV) {
       setTasks(mockTasks);
@@ -96,6 +100,9 @@ export default function TasksPage() {
   function getCurrentTasks() {
     setIsFetching(true);
     const index = selectedCategoryIndex;
+    console.log("Categories: ", categories)
+    console.log("current index: ", index)
+
     axios.post('tasks', {
       description: categories[index].description
     }).then((response) => {
