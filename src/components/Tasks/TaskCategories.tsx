@@ -25,7 +25,7 @@ export default function TaskCategories(props: TaskCategoriesProps) {
               </div>
             )
               : (
-                <button className="bg-green-400 text-slate-900 px-2 rounded-xl"
+                <button className="bg-green-500 hover:bg-green-400 text-slate-900 px-2 rounded-xl"
                   key={index}
                   onClick={() => props.onSelectCategory(index)}
                 >
