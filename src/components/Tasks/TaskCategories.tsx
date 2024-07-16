@@ -28,7 +28,11 @@ export default function TaskCategories(props: TaskCategoriesProps) {
                 : (
                   <button className="bg-green-500 hover:bg-green-400 text-slate-900 px-2 rounded-xl"
                     key={index}
-                    onClick={() => props.onSelectCategory(index)}
+                    onClick={() => {
+                      console.log("Selecting index: ", index);
+                      console.log("category: ", category);
+                      props.onSelectCategory(index)
+                    }}
                   >
                     {category.name}
                   </button>
