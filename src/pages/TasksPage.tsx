@@ -18,6 +18,7 @@ interface Category {
 }
 
 export default function TasksPage() {
+  const [isFetching, setIsFetching] = useState(false);
   const [tasksCache, setTasksCache] = useState<Record<string, Task[]>>({});
   const { state } = useLocation();
   const [title, setTitle] = useState("");
@@ -47,6 +48,7 @@ export default function TasksPage() {
         setTasksCache(tempCache);
       }
       else {
+        setIsFetching(true);
         axios.post('categories', {
           learning_goal: learning_goal,
           name: itemName,
@@ -55,6 +57,8 @@ export default function TasksPage() {
           setCategories(response.data.categories);
         }).catch((error) => {
           console.log(error);
+        }).finally(() => {
+          setIsFetching(false);
         });
       }
     }
@@ -64,7 +68,11 @@ export default function TasksPage() {
   }, []);
 
   function handleSelectCategory(index: number) {
-    setCurrentCategory(index);
+    if (isFetching) {
+      return;
+    } else {
+      setCurrentCategory(index);
+    }
   }
 
   function setCurrentCategory(index: number) {
@@ -86,6 +94,7 @@ export default function TasksPage() {
   }
 
   function getCurrentTasks() {
+    setIsFetching(true);
     const index = selectedCategoryIndex;
     axios.post('tasks', {
       description: categories[index].description
@@ -119,6 +128,8 @@ export default function TasksPage() {
       }
     }).catch((error) => {
       console.log(error);
+    }).finally(() => {
+      setIsFetching(false);
     })
   }
 
