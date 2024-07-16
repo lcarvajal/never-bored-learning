@@ -7,7 +7,6 @@ import { mockCategories, mockTasks } from '../util/mock';
 interface Task {
   id: number,
   title: string,
-  year: number,
   url: string,
   description: string,
   type: string
@@ -29,7 +28,6 @@ export default function TasksPage() {
       setDescription(description);
 
       if (import.meta.env.DEV) {
-        console.log("Dev mode")
         setCategories(mockCategories);
         setTasks(mockTasks);
       }
