@@ -80,9 +80,7 @@ export default function TasksPage() {
 
   function setCurrentCategory(index: number) {
     setSelectedCategoryIndex(index);
-    console.log("Selected index: ", index)
-    console.log("Selected category: ", selectedCategoryIndex)
-    console.log("Here is the cache: ", tasksCache)
+
     if (import.meta.env.DEV) {
       setTasks(mockTasks);
     }
@@ -93,14 +91,13 @@ export default function TasksPage() {
       }
       else {
         setTasks([]);
-        getCurrentTasks();
+        getCurrentTasks(index);
       }
     }
   }
 
-  function getCurrentTasks() {
+  function getCurrentTasks(index: number) {
     setIsFetching(true);
-    const index = selectedCategoryIndex;
     console.log("Categories: ", categories)
     console.log("current index: ", index)
 
