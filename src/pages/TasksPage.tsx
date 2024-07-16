@@ -64,18 +64,18 @@ export default function TasksPage() {
   }, []);
 
   function handleSelectCategory(index: number) {
-    setSelectedCategoryIndex(index);
-    setTasks([]);
     setCurrentCategory(index);
   }
 
   function setCurrentCategory(index: number) {
+    setSelectedCategoryIndex(index);
     console.log("Here is the cache: ", tasksCache)
     if (import.meta.env.DEV) {
       setTasks(mockTasks);
     }
     else {
-      if (tasksCache[categories[index].name]) {
+      if (categories[index].name in tasksCache) {
+        console.log("Should use from cache")
         setTasks(tasksCache[categories[index].name]);
       }
       else {
