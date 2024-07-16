@@ -80,6 +80,7 @@ export default function TasksPage() {
 
   function setCurrentCategory(index: number) {
     setSelectedCategoryIndex(index);
+    console.log("Selected index: ", index)
     console.log("Selected category: ", selectedCategoryIndex)
     console.log("Here is the cache: ", tasksCache)
     if (import.meta.env.DEV) {
