@@ -36,10 +36,22 @@ export const mockRoadmap = {
 }
 
 export const mockCategories = [
-  "React Overview",
-  "Virutal DOM",
-  "Components",
-  "Props and state"
+  {
+    name: "React Overview",
+    description: "Get an overview of the different terminology used in React"
+  },
+  {
+    name: "Virutal DOM",
+    description: "Understand the virtual DOM in React"
+  },
+  {
+    name: "Components",
+    description: "Build basic React components"
+  },
+  {
+    name: "Props and state",
+    description: "Manage props and state in React components"
+  }
 ]
 
 export const mockTasks = [

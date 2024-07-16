@@ -1,7 +1,12 @@
+interface Category {
+  name: string;
+  description: string;
+}
+
 interface TaskCategoriesProps {
-  categories: string[];
+  categories: Category[];
   selectedIndex: number;
-  onSelectCategory: (index: number, category: string) => void;
+  onSelectCategory: (index: number) => void;
 }
 
 export default function TaskCategories(props: TaskCategoriesProps) {
@@ -14,17 +19,17 @@ export default function TaskCategories(props: TaskCategoriesProps) {
           <>
             {props.selectedIndex === index ? (
               <div className="border-2 border-slate-50 text-slate-50 px-2 rounded-xl"
-                key={category}
+                key={index}
               >
-                {category}
+                {category.name}
               </div>
             )
               : (
                 <button className="bg-green-400 text-slate-900 px-2 rounded-xl"
-                  key={category}
-                  onClick={() => props.onSelectCategory(index, category)}
+                  key={index}
+                  onClick={() => props.onSelectCategory(index)}
                 >
-                  {category}
+                  {category.name}
                 </button>
               )}
           </>

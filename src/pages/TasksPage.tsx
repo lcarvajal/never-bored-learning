@@ -13,11 +13,17 @@ interface Task {
   type: string
 }
 
+interface Category {
+  name: string;
+  description: string;
+}
+
 export default function TasksPage() {
+  const tasksCache: { [categoryName: string]: Task[] } = {};
   const { state } = useLocation();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [categories, setCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
   const [tasks, setTasks] = useState<Task[]>([]);
 
@@ -42,6 +48,7 @@ export default function TasksPage() {
           desctiption: itemDescription
         }).then((response) => {
           setCategories(response.data);
+          setCurrentCategory(0);
         }).catch((error) => {
           console.log(error);
         });
@@ -52,8 +59,26 @@ export default function TasksPage() {
     }
   }, [state]);
 
-  function handleSelectCategory(index: number, category: string) {
+  function handleSelectCategory(index: number) {
     setSelectedCategoryIndex(index);
+    setTasks([]);
+    setCurrentCategory(index);
+  }
+
+  function setCurrentCategory(index: number) {
+    if (categories[index].name in tasksCache) {
+      setTasks(tasksCache[categories[index].name]);
+    }
+    else {
+      axios.post('tasks', {
+        description: categories[index].description
+      }).then((response) => {
+        tasksCache[categories[index].name] = response.data
+        setTasks(response.data);
+      }).catch((error) => {
+        console.log(error);
+      })
+    }
   }
 
   return (
@@ -61,7 +86,9 @@ export default function TasksPage() {
       <h1>{title}</h1>
       <p>{description}</p>
       <TaskCategories categories={categories} selectedIndex={selectedCategoryIndex} onSelectCategory={handleSelectCategory} />
-      <Tasks tasks={tasks} />
+      {
+        tasks.length > 0 ? <Tasks tasks={tasks} /> : <p>Loading...</p>
+      }
     </div>
   )
 }
