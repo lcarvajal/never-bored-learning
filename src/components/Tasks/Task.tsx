@@ -2,7 +2,7 @@ interface TaskProps {
   id: number
   title: string
   url: string
-  description: string
+  content: string
   type: string
 }
 
@@ -16,7 +16,7 @@ export default function Task(props: TaskProps) {
       <div className="flex flex-col">
         <p><span>{props.type}</span></p>
         <h4 className="font-semibold text-lg">{props.title}</h4>
-        <p>{props.description}</p>
+        <p>{props.content}</p>
       </div>
       <div className="">
         <button onClick={handleOnStartTask}>↗</button>

@@ -4,7 +4,7 @@ interface Task {
   id: number
   title: string
   url: string
-  description: string
+  content: string
   type: string
 }
 
