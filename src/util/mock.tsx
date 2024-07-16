@@ -35,6 +35,13 @@ export const mockRoadmap = {
   "learning_goal": "By the end of this learning journey, I will be able to build interactive web applications using React."
 }
 
+export const mockCategories = [
+  "React Overview",
+  "Virutal DOM",
+  "Components",
+  "Props and state"
+]
+
 export const mockTasks = [
   {
     "id": 1,
