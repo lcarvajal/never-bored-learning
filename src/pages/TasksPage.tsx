@@ -17,6 +17,7 @@ export default function TasksPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [categories, setCategories] = useState<string[]>([]);
+  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
@@ -26,6 +27,7 @@ export default function TasksPage() {
 
       setTitle(title);
       setDescription(description);
+      setSelectedCategoryIndex(0);
 
       if (import.meta.env.DEV) {
         setCategories(mockCategories);
@@ -41,10 +43,10 @@ export default function TasksPage() {
   }, [state]);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-4">
       <h1>{title}</h1>
       <p>{description}</p>
-      <TaskCategories categories={categories} />
+      <TaskCategories categories={categories} selectedIndex={selectedCategoryIndex} />
       <Tasks tasks={tasks} />
     </div>
   )
