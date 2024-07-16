@@ -53,13 +53,13 @@ export default function LearningOverviewPage() {
           </div>
           <div className="flex flex-col gap-4">
             {roadmap.modules.map((item) => (
-              <div key={item.id} className="border-slate-200 border-2 p-4 rounded-xl flex flex-row gap-4">
-                <div className="flex flex-col grow">
+              <div key={item.id} className="group border-slate-200 border-2 p-4 rounded-xl flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col grow w-full">
                   <p className="font-bold">{item.name}</p>
                   <p>{item.description}</p>
                 </div>
-                <div className="w-20 text-center">
-                  <button className="button-primary" onClick={() => { navigate('/tasks', { state: item }) }}>Start</button>
+                <div className="flex flex-col w-full sm:w-auto text-center">
+                  <button className="button-primary sm:invisible sm:group-hover:visible ml-auto" onClick={() => { navigate('/tasks', { state: item }) }}>Open</button>
                 </div>
               </div>
             ))}
