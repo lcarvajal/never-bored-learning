@@ -9,7 +9,7 @@ interface Task {
   id: number,
   title: string,
   url: string,
-  description: string,
+  content: string,
   type: string
 }
 
@@ -47,7 +47,7 @@ export default function TasksPage() {
           name: itemName,
           description: itemDescription
         }).then((response) => {
-          setCategories(response.data);
+          setCategories(response.data.categories);
           setCurrentCategory(0);
         }).catch((error) => {
           console.log(error);
