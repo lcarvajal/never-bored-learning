@@ -7,12 +7,11 @@ export default function TaskCategories(props: TaskCategoriesProps) {
 
   return (
     <div>
-      <h2>Categories</h2>
-      <ul>
+      <div className="flex flex-row gap-2">
         {categories.map((category) => (
-          <li key={category}>{category}</li>
+          <button className="bg-green-400 text-slate-900 px-2 rounded-xl" key={category}>{category}</button>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
