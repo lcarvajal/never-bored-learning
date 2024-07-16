@@ -57,7 +57,7 @@ export default function TasksPage() {
     else {
       console.log("No state")
     }
-  }, [state]);
+  }, []);
 
   function handleSelectCategory(index: number) {
     setSelectedCategoryIndex(index);
