@@ -73,7 +73,7 @@ export default function TasksPage() {
       axios.post('tasks', {
         description: categories[index].description
       }).then((response) => {
-        tasksCache[categories[index].name] = response.data
+        tasksCache[categories[index].name] = response.data.results
         setTasks(response.data);
       }).catch((error) => {
         console.log(error);
