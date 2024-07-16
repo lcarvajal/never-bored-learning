@@ -47,10 +47,10 @@ export default function TasksPage() {
           description: itemDescription
         }).then((response) => {
           setCategories(response.data.categories);
-          setCurrentCategory(0);
-          getCurrentTasks();
         }).catch((error) => {
           console.log(error);
+        }).finally(() => {
+          setCurrentCategory(0);
         });
       }
     }
