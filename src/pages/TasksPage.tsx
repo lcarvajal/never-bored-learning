@@ -47,7 +47,6 @@ export default function TasksPage() {
           name: itemName,
           description: itemDescription
         }).then((response) => {
-          console.log(response.data)
           setCategories(response.data.categories);
           setCurrentCategory(0);
         }).catch((error) => {
@@ -74,9 +73,10 @@ export default function TasksPage() {
       axios.post('tasks', {
         description: categories[index].description
       }).then((response) => {
-        console.log(response.data)
-        tasksCache[categories[index].name] = response.data.results
-        setTasks(response.data);
+        const resources = response.data.results
+        console.log("resources", resources)
+        tasksCache[categories[index].name] = resources
+        setTasks(resources);
       }).catch((error) => {
         console.log(error);
       })
