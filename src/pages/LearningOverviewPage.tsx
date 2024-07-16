@@ -59,7 +59,7 @@ export default function LearningOverviewPage() {
                   <p>{item.description}</p>
                 </div>
                 <div className="flex flex-col w-full sm:w-auto text-center justify-center">
-                  <button className="button-primary sm:invisible sm:group-hover:visible ml-auto" onClick={() => { navigate('/tasks', { state: item }) }}>Open</button>
+                  <button className="button-primary sm:invisible sm:group-hover:visible ml-auto" onClick={() => { navigate('/tasks', { state: { roadmapItem: item, learning_goal: roadmap.learning_goal } }) }}>Open</button>
                 </div>
               </div>
             ))}

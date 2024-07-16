@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import TaskCategories from '../components/Tasks/TaskCategories';
 import { mockCategories, mockTasks } from '../util/mock';
+import axios from 'axios';
 
 interface Task {
   id: number,
@@ -22,11 +23,12 @@ export default function TasksPage() {
 
   useEffect(() => {
     if (state) {
-      const title = state.name;
-      const description = state.description;
+      const learning_goal = state.learning_goal;
+      const itemName = state.roadmapItem.name;
+      const itemDescription = state.roadmapItem.description;
 
-      setTitle(title);
-      setDescription(description);
+      setTitle(itemName);
+      setDescription(itemDescription);
       setSelectedCategoryIndex(0);
 
       if (import.meta.env.DEV) {
@@ -34,7 +36,15 @@ export default function TasksPage() {
         setTasks(mockTasks);
       }
       else {
-        // TODO: use axios to get categories. Body should be set with title and description
+        axios.post('categories', {
+          learning_goal: learning_goal,
+          name: itemName,
+          desctiption: itemDescription
+        }).then((response) => {
+          setCategories(response.data);
+        }).catch((error) => {
+          console.log(error);
+        });
       }
     }
     else {
