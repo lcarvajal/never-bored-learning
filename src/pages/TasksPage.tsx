@@ -42,11 +42,15 @@ export default function TasksPage() {
     }
   }, [state]);
 
+  function handleSelectCategory(index: number, category: string) {
+    setSelectedCategoryIndex(index);
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <h1>{title}</h1>
       <p>{description}</p>
-      <TaskCategories categories={categories} selectedIndex={selectedCategoryIndex} />
+      <TaskCategories categories={categories} selectedIndex={selectedCategoryIndex} onSelectCategory={handleSelectCategory} />
       <Tasks tasks={tasks} />
     </div>
   )
