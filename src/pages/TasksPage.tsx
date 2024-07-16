@@ -106,7 +106,7 @@ export default function TasksPage() {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col grow gap-4 w-full md: w-3/3 lg:w-4/5 px-6">
       <h1>{title}</h1>
       <p>{description}</p>
       <TaskCategories categories={categories} selectedIndex={selectedCategoryIndex} onSelectCategory={handleSelectCategory} />
