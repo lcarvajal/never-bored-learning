@@ -48,6 +48,7 @@ export default function TasksPage() {
         }).then((response) => {
           setCategories(response.data.categories);
           setCurrentCategory(0);
+          getCurrentTasks();
         }).catch((error) => {
           console.log(error);
         });
@@ -69,35 +70,39 @@ export default function TasksPage() {
       setTasks(tasksCache[categories[index].name]);
     }
     else {
-      axios.post('tasks', {
-        description: categories[index].description
-      }).then((response) => {
-        const resources = response.data.results
-        console.log("resources", resources)
-
-        interface ResponseTask {
-          "title": string,
-          "url": string,
-          "content": string,
-          "score": number,
-          "raw_content": string | null
-        }
-
-        const responseTasks = resources.map((responseTask: ResponseTask) => {
-          return {
-            title: responseTask.title,
-            url: responseTask.url,
-            content: responseTask.content,
-            type: "url"
-          }
-        })
-
-        tasksCache[categories[index].name] = responseTasks
-        setTasks(responseTasks);
-      }).catch((error) => {
-        console.log(error);
-      })
+      getCurrentTasks();
     }
+  }
+
+  function getCurrentTasks() {
+    axios.post('tasks', {
+      description: categories[selectedCategoryIndex].description
+    }).then((response) => {
+      const resources = response.data.results
+      console.log("resources", resources)
+
+      interface ResponseTask {
+        "title": string,
+        "url": string,
+        "content": string,
+        "score": number,
+        "raw_content": string | null
+      }
+
+      const responseTasks = resources.map((responseTask: ResponseTask) => {
+        return {
+          title: responseTask.title,
+          url: responseTask.url,
+          content: responseTask.content,
+          type: "url"
+        }
+      })
+
+      tasksCache[categories[selectedCategoryIndex].name] = responseTasks
+      setTasks(responseTasks);
+    }).catch((error) => {
+      console.log(error);
+    })
   }
 
   return (
