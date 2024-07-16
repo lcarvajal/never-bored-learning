@@ -75,8 +75,18 @@ export default function TasksPage() {
       }).then((response) => {
         const resources = response.data.results
         console.log("resources", resources)
-        tasksCache[categories[index].name] = resources
-        setTasks(resources);
+        const responseTasks = resources.map((responseTask) => {
+          return {
+            id: responseTask.id,
+            title: responseTask.title,
+            url: responseTask.url,
+            content: responseTask.content,
+            type: "url"
+          }
+        })
+
+        tasksCache[categories[index].name] = responseTasks
+        setTasks(responseTasks);
       }).catch((error) => {
         console.log(error);
       })
