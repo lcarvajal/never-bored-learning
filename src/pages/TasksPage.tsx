@@ -45,7 +45,7 @@ export default function TasksPage() {
         axios.post('categories', {
           learning_goal: learning_goal,
           name: itemName,
-          desctiption: itemDescription
+          description: itemDescription
         }).then((response) => {
           setCategories(response.data);
           setCurrentCategory(0);
