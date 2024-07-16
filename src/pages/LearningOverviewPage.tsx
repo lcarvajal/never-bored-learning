@@ -58,7 +58,7 @@ export default function LearningOverviewPage() {
                   <p className="font-bold">{item.name}</p>
                   <p>{item.description}</p>
                 </div>
-                <div className="flex flex-col w-full sm:w-auto text-center">
+                <div className="flex flex-col w-full sm:w-auto text-center justify-center">
                   <button className="button-primary sm:invisible sm:group-hover:visible ml-auto" onClick={() => { navigate('/tasks', { state: item }) }}>Open</button>
                 </div>
               </div>
