@@ -79,6 +79,7 @@ export default function TasksPage() {
         setTasks(tasksCache[categories[index].name]);
       }
       else {
+        setTasks([]);
         getCurrentTasks();
       }
     }
