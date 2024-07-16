@@ -23,7 +23,7 @@ export default function TasksPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [categories, setCategories] = useState<Category[]>([]);
-  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
+  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(-1);
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
@@ -34,7 +34,6 @@ export default function TasksPage() {
 
       setTitle(itemName);
       setDescription(itemDescription);
-      setSelectedCategoryIndex(0);
 
       if (import.meta.env.DEV) {
         setCategories(mockCategories);
@@ -106,12 +105,19 @@ export default function TasksPage() {
   }
 
   return (
-    <div className="flex flex-col grow gap-4 w-full md: w-3/3 lg:w-4/5 px-6">
+    <div className="flex flex-col grow gap-4 w-full md: w-3/3 lg:w-3/5 px-6">
       <h1>{title}</h1>
       <p>{description}</p>
       <TaskCategories categories={categories} selectedIndex={selectedCategoryIndex} onSelectCategory={handleSelectCategory} />
       {
-        tasks.length > 0 ? <Tasks tasks={tasks} /> : <p>Loading...</p>
+        tasks.length > 0 ? <Tasks tasks={tasks} /> : (
+          <>
+            {
+              selectedCategoryIndex !== -1 ? <p>Loading...</p> : <p>Select a category to get started</p>
+
+            }
+          </>
+        )
       }
     </div>
   )
