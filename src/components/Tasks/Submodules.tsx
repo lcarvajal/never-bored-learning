@@ -1,48 +1,42 @@
-interface Category {
+interface Submodule {
   name: string;
-  description: string;
+  query: string;
 }
 
-interface TaskCategoriesProps {
-  categories: Category[];
+interface SubmodulesProps {
+  submodules: Submodule[];
   selectedIndex: number;
-  onSelectCategory: (index: number) => void;
+  onSelectSubmodule: (index: number) => void;
 }
 
-export default function TaskCategories(props: TaskCategoriesProps) {
-  const categories = props.categories;
+export default function Submodules(props: SubmodulesProps) {
+  const submodules = props.submodules;
 
   return (
     <div>
       <div className="flex flex-row gap-2">
-        {categories.length > 0 ?
-          (categories.map((category, index) => (
+        {
+          submodules.map((submodule, index) => (
             <>
               {props.selectedIndex === index ? (
                 <div className="border-2 border-slate-50 text-slate-50 px-2 rounded-xl"
                   key={index}
                 >
-                  {category.name}
+                  {submodule.name}
                 </div>
               )
                 : (
                   <button className="bg-green-500 hover:bg-green-400 text-slate-900 px-2 rounded-xl"
                     key={index}
                     onClick={() => {
-                      console.log("Selecting index: ", index);
-                      console.log("category: ", category);
-                      props.onSelectCategory(index)
+                      props.onSelectSubmodule(index)
                     }}
                   >
-                    {category.name}
+                    {submodule.name}
                   </button>
                 )}
             </>
-          ))) : (
-            <>
-              <p>Loading categories...</p>
-            </>
-          )
+          ))
         }
       </div>
     </div>

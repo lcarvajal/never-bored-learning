@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface Roadmap {
   learning_goal: string,
+  static_roadmap?: string,
   modules: RoadmapItem[],
 }
 
@@ -59,7 +60,13 @@ export default function LearningOverviewPage() {
                   <p>{item.description}</p>
                 </div>
                 <div className="flex flex-col w-full sm:w-auto text-center justify-center">
-                  <button className="button-primary sm:invisible sm:group-hover:visible ml-auto" onClick={() => { navigate('/tasks', { state: { roadmapItem: item, learning_goal: roadmap.learning_goal } }) }}>Open</button>
+                  {
+                    roadmap.static_roadmap && (
+                      <button className="button-primary sm:invisible sm:group-hover:visible ml-auto" onClick={() => { navigate('/tasks', { state: { roadmapItem: item, learning_goal: roadmap.learning_goal } }) }}>
+                        Open
+                      </button>
+                    )
+                  }
                 </div>
               </div>
             ))}
