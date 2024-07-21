@@ -8,7 +8,7 @@ import axios from 'axios';
 interface Task {
   title: string,
   url: string,
-  content: string,
+  description: string,
   type: string
 }
 
@@ -44,12 +44,7 @@ export default function TasksPage() {
   function handleSelectCategory(index: number) {
     setSelectedSubmoduleIndex(index);
 
-    if (import.meta.env.DEV) {
-      setTasks(mockTasks);
-    }
-    else {
-      setTasks([]);
-    }
+    setTasks([]);
   }
 
   return (
