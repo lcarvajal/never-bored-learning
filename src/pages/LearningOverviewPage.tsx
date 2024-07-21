@@ -2,6 +2,13 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+interface UserProfile {
+  name: string;
+  email: string;
+  goal: string;
+  static_roadmaps: [string];
+}
+
 interface Roadmap {
   learning_goal: string,
   static_roadmap?: string,
@@ -16,25 +23,48 @@ interface RoadmapItem {
 
 export default function LearningOverviewPage() {
   const navigate = useNavigate();
+  const [userProfile, setUserProfile] = useState<UserProfile>({} as UserProfile);
   const [roadmap, setRoadmap] = useState<Roadmap>({} as Roadmap);
+  const [isStaticRoadmap, setIsStaticRoadmap] = useState(false);
 
   useEffect(() => {
-    axios.get('/roadmaps/javascript')
+    axios.get('profiles')
       .then((response) => {
-        setRoadmap(response.data);
-      })
-      .catch((error) => {
-        if (error.response.status === 404) {
-          axios.post('roadmaps')
+        setUserProfile(response.data);
+
+        if (response.data.static_roadmaps && response.data.static_roadmaps.length > 0) {
+          setIsStaticRoadmap(true);
+          axios.get('/roadmaps/' + response.data.static_roadmaps[0])
             .then((response) => {
               setRoadmap(response.data);
             })
             .catch((error) => {
-              console.log(error)
-            })
-        } else {
-          console.log(error);
+              console.log(error);
+            });
         }
+        else {
+          setIsStaticRoadmap(false);
+          axios.get('roadmaps')
+            .then((response) => {
+              setRoadmap(response.data);
+            })
+            .catch((error) => {
+              if (error.response.status === 404) {
+                axios.post('roadmaps')
+                  .then((response) => {
+                    setRoadmap(response.data);
+                  })
+                  .catch((error) => {
+                    console.log(error)
+                  })
+              } else {
+                console.log(error);
+              }
+            });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }, []);
 
@@ -44,7 +74,7 @@ export default function LearningOverviewPage() {
         <>
           <div className="rounded-xl flex flex-col gap-4 mt-12">
             <h1>Learning Roadmap</h1>
-            <p>{roadmap.learning_goal}</p>
+            <p>{userProfile.goal}</p>
           </div>
           <div className="flex flex-col gap-4">
             {roadmap.modules.map((item) => (
@@ -55,7 +85,7 @@ export default function LearningOverviewPage() {
                 </div>
                 <div className="flex flex-col w-full sm:w-auto text-center justify-center">
                   {
-                    roadmap.static_roadmap && (
+                    isStaticRoadmap && (
                       <button className="button-primary sm:invisible sm:group-hover:visible ml-auto" onClick={() => { navigate('/tasks', { state: { roadmapItem: item, learning_goal: roadmap.learning_goal } }) }}>
                         Open
                       </button>
