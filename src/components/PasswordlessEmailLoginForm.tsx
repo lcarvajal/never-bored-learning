@@ -25,16 +25,27 @@ export default function PasswordlessEmailLoginForm(props: FormProps = { accountA
         const user = result.user;
 
         if (state) {
-          console.log("State set");
-          console.log(state);
-          axios.post('profiles',
-            {
-              uid: user.uid,
-              name: state.name,
-              email: user.email,
-              goal: state.goal,
-              reason: state.reason,
-            })
+          const profile: {
+            uid: string;
+            name: string;
+            email: string | null;
+            goal: string;
+            reason: string;
+            static_roadmaps: string[];
+          } = {
+            uid: user.uid,
+            name: state.name,
+            email: user.email,
+            goal: state.goal,
+            reason: state.reason,
+            static_roadmaps: []
+          };
+
+          if (state.goal.toLowerCase().includes('javascript')) {
+            profile.static_roadmaps = ["javascript"];
+          }
+
+          axios.post('profiles', profile)
             .then((response) => {
               console.log(response.data);
             })

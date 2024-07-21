@@ -1,5 +1,5 @@
-import { useState, ChangeEvent } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, ChangeEvent } from 'react';
+import { useNavigate, useLocation } from "react-router-dom";
 
 // Define a type for form values
 interface FormValues {
@@ -9,6 +9,7 @@ interface FormValues {
 }
 
 export default function CreateLearnerProfilePage() {
+  const { state } = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState("Breaking down learning goal...");
   const navigate = useNavigate();
@@ -17,6 +18,16 @@ export default function CreateLearnerProfilePage() {
     goal: '',
     reason: '',
   });
+
+  useEffect(() => {
+    if (state && state.goal) {
+      setFormValues({
+        name: "",
+        goal: state.goal,
+        reason: "",
+      });
+    }
+  }, [state]);
 
   async function handleClick() {
     setIsLoading(true);
@@ -60,7 +71,7 @@ export default function CreateLearnerProfilePage() {
               name="goal"
               value={formValues.goal}
               maxLength={250}
-              minLength={60}
+              minLength={40}
               onChange={handleInputChange}
               required
             />
