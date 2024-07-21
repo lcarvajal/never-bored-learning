@@ -1,7 +1,7 @@
 interface TaskProps {
   title: string
   url: string
-  content: string
+  description: string
   type: string
 }
 
@@ -15,7 +15,7 @@ export default function Task(props: TaskProps) {
       <div className="flex flex-col">
         <p><span>{props.type}</span></p>
         <h4 className="font-semibold text-lg">{props.title}</h4>
-        <p className="text-ellipsis ... overflow-hidden h-[4.5rem] w-full">{props.content}</p>
+        <p className="text-ellipsis ... overflow-hidden h-[4.5rem] w-full">{props.description}</p>
       </div>
       <div className="">
         <button>↗</button>

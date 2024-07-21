@@ -35,22 +35,26 @@ export const mockRoadmap = {
   "learning_goal": "By the end of this learning journey, I will be able to build interactive web applications using React."
 }
 
-export const mockCategories = [
+export const mockSubmodules = [
   {
-    name: "React Overview",
-    description: "Get an overview of the different terminology used in React"
+    "id": 1,
+    "name": "Variable declarations",
+    "query": "How to declare a variable in Javascript"
   },
   {
-    name: "Virutal DOM",
-    description: "Understand the virtual DOM in React"
+    "id": 2,
+    "name": "Hoisting",
+    "query": "What is hoisting in JavaScript"
   },
   {
-    name: "Components",
-    description: "Build basic React components"
+    "id": 3,
+    "name": "Variable naming rules",
+    "query": "Naming rules for variables in JavaScript"
   },
   {
-    name: "Props and state",
-    description: "Manage props and state in React components"
+    "id": 4,
+    "name": "Variable scope",
+    "query": "How does variable scope work in JavaScript"
   }
 ]
 

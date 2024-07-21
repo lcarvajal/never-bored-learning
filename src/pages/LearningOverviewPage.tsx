@@ -1,7 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { mockRoadmap } from '../util/mock';
 import { useNavigate } from 'react-router-dom';
+
+interface UserProfile {
+  name: string;
+  email: string;
+  goal: string;
+  static_roadmaps: [string];
+}
 
 interface Roadmap {
   learning_goal: string,
@@ -16,31 +22,49 @@ interface RoadmapItem {
 
 export default function LearningOverviewPage() {
   const navigate = useNavigate();
+  const [userProfile, setUserProfile] = useState<UserProfile>({} as UserProfile);
   const [roadmap, setRoadmap] = useState<Roadmap>({} as Roadmap);
+  const [isStaticRoadmap, setIsStaticRoadmap] = useState(false);
 
   useEffect(() => {
-    if (import.meta.env.DEV) {
-      setRoadmap(mockRoadmap);
-    }
-    else {
-      axios.get('roadmaps')
-        .then((response) => {
-          setRoadmap(response.data);
-        })
-        .catch((error) => {
-          if (error.response.status === 404) {
-            axios.post('roadmaps')
-              .then((response) => {
-                setRoadmap(response.data);
-              })
-              .catch((error) => {
-                console.log(error)
-              })
-          } else {
-            console.log(error);
-          }
-        });
-    }
+    axios.get('profiles')
+      .then((response) => {
+        setUserProfile(response.data);
+
+        if (response.data.static_roadmaps && response.data.static_roadmaps.length > 0) {
+          setIsStaticRoadmap(true);
+          axios.get('/roadmaps/' + response.data.static_roadmaps[0])
+            .then((response) => {
+              setRoadmap(response.data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+        else {
+          setIsStaticRoadmap(false);
+          axios.get('roadmaps')
+            .then((response) => {
+              setRoadmap(response.data);
+            })
+            .catch((error) => {
+              if (error.response.status === 404) {
+                axios.post('roadmaps')
+                  .then((response) => {
+                    setRoadmap(response.data);
+                  })
+                  .catch((error) => {
+                    console.log(error)
+                  })
+              } else {
+                console.log(error);
+              }
+            });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (
@@ -49,7 +73,7 @@ export default function LearningOverviewPage() {
         <>
           <div className="rounded-xl flex flex-col gap-4 mt-12">
             <h1>Learning Roadmap</h1>
-            <p>{roadmap.learning_goal}</p>
+            <p>{userProfile.goal}</p>
           </div>
           <div className="flex flex-col gap-4">
             {roadmap.modules.map((item) => (
@@ -59,7 +83,13 @@ export default function LearningOverviewPage() {
                   <p>{item.description}</p>
                 </div>
                 <div className="flex flex-col w-full sm:w-auto text-center justify-center">
-                  <button className="button-primary sm:invisible sm:group-hover:visible ml-auto" onClick={() => { navigate('/tasks', { state: { roadmapItem: item, learning_goal: roadmap.learning_goal } }) }}>Open</button>
+                  {
+                    isStaticRoadmap && (
+                      <button className="button-primary sm:invisible sm:group-hover:visible ml-auto" onClick={() => { navigate('/roadmaps/' + userProfile.static_roadmaps[0] + "/" + item.id, { state: { roadmapItem: item, learning_goal: roadmap.learning_goal } }) }}>
+                        Open
+                      </button>
+                    )
+                  }
                 </div>
               </div>
             ))}

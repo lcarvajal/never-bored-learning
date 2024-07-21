@@ -13,3 +13,7 @@ A webapp for people who easily get distracted on their computer and want to be n
 
 - [ ] Check wtf is wrong for making this public (labeled with FIX ME)
 - [ ] Add step before create profile where a user can choose to start or log in
+
+## Commands
+
+- `npm run dev`

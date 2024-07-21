@@ -3,7 +3,7 @@ import Task from "./Task"
 interface Task {
   title: string
   url: string
-  content: string
+  description: string
   type: string
 }
 

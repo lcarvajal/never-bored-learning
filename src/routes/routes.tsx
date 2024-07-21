@@ -28,7 +28,7 @@ export default [
     errorElement: <ErrorPage />,
   },
   {
-    path: "/tasks/",
+    path: "roadmaps/:roadmapName/:moduleId",
     element: (
       <PrivateRoute>
         <TasksPage />
