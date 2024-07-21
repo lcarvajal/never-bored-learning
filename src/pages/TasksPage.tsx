@@ -2,7 +2,6 @@ import Tasks from '../components/Tasks/Tasks';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Submodules from '../components/Tasks/Submodules';
-import { mockTasks } from '../util/mock';
 import axios from 'axios';
 
 interface Task {
