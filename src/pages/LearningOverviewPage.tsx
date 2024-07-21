@@ -85,7 +85,7 @@ export default function LearningOverviewPage() {
                 <div className="flex flex-col w-full sm:w-auto text-center justify-center">
                   {
                     isStaticRoadmap && (
-                      <button className="button-primary sm:invisible sm:group-hover:visible ml-auto" onClick={() => { navigate('/roadmaps/' + userProfile.static_roadmaps[0] + "/" + item.id, { state: { roadmapItem: item, learning_goal: roadmap.learning_goal } }) }}>
+                      <button className="button-primary sm:invisible sm:group-hover:visible ml-auto" onClick={() => { navigate('/roadmaps/' + userProfile.static_roadmaps[0] + "/" + item.id) }}>
                         Open
                       </button>
                     )

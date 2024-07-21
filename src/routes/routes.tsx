@@ -6,10 +6,11 @@ import CreateLearnerProfilePage from '../pages/public/CreateLearnerProfilePage.t
 import LandingPage from '../pages/public/LandingPage.tsx';
 import ProfilePage from '../pages/ProfilePage.tsx';
 import TasksPage from '../pages/TasksPage.tsx';
+import JavaScriptLandingPage from '../pages/public/JavaScriptLandingPage.tsx';
 
 export default [
+  // Private routes
   {
-    // Private routes
     path: "/",
     element: (
       <PrivateRoute>
@@ -51,6 +52,13 @@ export default [
     path: "/get-started/",
     element: (
       <LandingPage />
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/get-started/javascript",
+    element: (
+      <JavaScriptLandingPage />
     ),
     errorElement: <ErrorPage />,
   },
