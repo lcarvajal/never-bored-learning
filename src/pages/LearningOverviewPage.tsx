@@ -19,15 +19,11 @@ export default function LearningOverviewPage() {
   const [roadmap, setRoadmap] = useState<Roadmap>({} as Roadmap);
 
   useEffect(() => {
-    axios.get('/').catch((error) => {
-      console.log("ERROR GETTING BASE URL: ", error)
-    })
     axios.get('/roadmaps/javascript')
       .then((response) => {
         setRoadmap(response.data);
       })
       .catch((error) => {
-        console.log("ERROR GETTING ROADMAP: ", error)
         if (error.response.status === 404) {
           axios.post('roadmaps')
             .then((response) => {
