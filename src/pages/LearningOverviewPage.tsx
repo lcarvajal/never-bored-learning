@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { mockRoadmap } from '../util/mock';
 import { useNavigate } from 'react-router-dom';
 
 interface Roadmap {
@@ -20,28 +19,27 @@ export default function LearningOverviewPage() {
   const [roadmap, setRoadmap] = useState<Roadmap>({} as Roadmap);
 
   useEffect(() => {
-    if (import.meta.env.DEV) {
-      setRoadmap(mockRoadmap);
-    }
-    else {
-      axios.get('roadmaps')
-        .then((response) => {
-          setRoadmap(response.data);
-        })
-        .catch((error) => {
-          if (error.response.status === 404) {
-            axios.post('roadmaps')
-              .then((response) => {
-                setRoadmap(response.data);
-              })
-              .catch((error) => {
-                console.log(error)
-              })
-          } else {
-            console.log(error);
-          }
-        });
-    }
+    axios.get('/').catch((error) => {
+      console.log("ERROR GETTING BASE URL: ", error)
+    })
+    axios.get('/roadmaps/javascript')
+      .then((response) => {
+        setRoadmap(response.data);
+      })
+      .catch((error) => {
+        console.log("ERROR GETTING ROADMAP: ", error)
+        if (error.response.status === 404) {
+          axios.post('roadmaps')
+            .then((response) => {
+              setRoadmap(response.data);
+            })
+            .catch((error) => {
+              console.log(error)
+            })
+        } else {
+          console.log(error);
+        }
+      });
   }, []);
 
   return (

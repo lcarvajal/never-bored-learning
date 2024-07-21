@@ -1,8 +1,8 @@
 import Tasks from '../components/Tasks/Tasks';
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Submodules from '../components/Tasks/Submodules';
-import { mockSubmodules, mockTasks } from '../util/mock';
+import { mockTasks } from '../util/mock';
 import axios from 'axios';
 
 interface Task {
@@ -27,38 +27,18 @@ interface Submodule {
 
 export default function TasksPage() {
   const { roadmapName, moduleId } = useParams();
-  const { state } = useLocation();
 
   const [module, setModule] = useState<Module>({} as Module);
   const [selectedSubmoduleIndex, setSelectedSubmoduleIndex] = useState(-1);
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
-    if (state) {
-      if (import.meta.env.DEV) {
-        const id = parseInt('' + moduleId);
-        const name = state.roadmapItem.name;
-        const description = state.roadmapItem.description;
-
-        setModule({
-          "id": id,
-          name: name,
-          description: description,
-          submodules: mockSubmodules
-        });
-      }
-      else {
-        axios.get(`/roadmaps/${roadmapName}/${'' + moduleId}`).then((response) => {
-          console.log("Response: ", response.data)
-          setModule(response.data);
-        }).catch((error) => {
-          console.log(error);
-        })
-      }
-    }
-    else {
-      console.log("No state")
-    }
+    axios.get(`/roadmaps/${roadmapName}/${'' + moduleId}`).then((response) => {
+      console.log("Response: ", response.data)
+      setModule(response.data);
+    }).catch((error) => {
+      console.log(error);
+    })
   }, []);
 
   function handleSelectCategory(index: number) {
