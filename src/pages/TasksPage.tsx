@@ -21,7 +21,8 @@ interface Module {
 interface Submodule {
   "id": number,
   "name": string,
-  "query": string
+  "query": string,
+  "resources": Task[]
 }
 
 export default function TasksPage() {
@@ -42,8 +43,8 @@ export default function TasksPage() {
 
   function handleSelectCategory(index: number) {
     setSelectedSubmoduleIndex(index);
-
-    setTasks([]);
+    const currentTasks = module.submodules[index].resources;
+    setTasks(currentTasks);
   }
 
   return (
@@ -54,7 +55,9 @@ export default function TasksPage() {
             <h1>{module.name}</h1>
             <p>{module.description}</p>
             <Submodules submodules={module.submodules} selectedIndex={selectedSubmoduleIndex} onSelectSubmodule={handleSelectCategory} />
-            <Tasks tasks={tasks} />
+            {
+              tasks.length > 0 ? <Tasks tasks={tasks} /> : <p>Click a topic above to get started</p>
+            }
           </>
         )
       }
