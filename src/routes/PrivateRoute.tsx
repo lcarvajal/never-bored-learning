@@ -20,7 +20,7 @@ const PrivateRoute = ({ children }: { children: ReactNode }) => {
 
   return (
     <>
-      {isLoading ? <h1>Loading...</h1> : (
+      {isLoading && (
         user ? children : <Navigate to="/get-started" />
       )}
     </>
