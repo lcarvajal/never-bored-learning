@@ -48,10 +48,16 @@ export default function TasksPage() {
 
   return (
     <div className="flex flex-col grow gap-4 w-full md: w-3/3 lg:w-3/5 px-6">
-      <h1>{module.name}</h1>
-      <p>{module.description}</p>
-      <Submodules submodules={module.submodules} selectedIndex={selectedSubmoduleIndex} onSelectSubmodule={handleSelectCategory} />
-      <Tasks tasks={tasks} />
+      {
+        module.name && (
+          <>
+            <h1>{module.name}</h1>
+            <p>{module.description}</p>
+            <Submodules submodules={module.submodules} selectedIndex={selectedSubmoduleIndex} onSelectSubmodule={handleSelectCategory} />
+            <Tasks tasks={tasks} />
+          </>
+        )
+      }
     </div>
   )
 }
