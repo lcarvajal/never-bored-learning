@@ -72,7 +72,7 @@ export default function LearningOverviewPage() {
       {roadmap && roadmap.modules ? (
         <>
           <div className="rounded-xl flex flex-col gap-4 mt-12">
-            <h1>Learning Roadmap</h1>
+            <h1>Explore Resources</h1>
             <p>{userProfile.goal}</p>
           </div>
           <div className="flex flex-col gap-4">
