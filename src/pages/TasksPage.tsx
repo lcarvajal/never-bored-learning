@@ -13,27 +13,29 @@ interface Task {
 
 interface Module {
   "id": number,
-  "name": string,
+  "title": string,
   "description": string,
   "submodules": Submodule[]
 }
 
 interface Submodule {
   "id": number,
-  "name": string,
+  "title": string,
+  "description": string,
   "query": string,
   "resources": Task[]
 }
 
 export default function TasksPage() {
-  const { roadmapName, moduleId } = useParams();
+  const { roadmapId, moduleId } = useParams();
 
   const [module, setModule] = useState<Module>({} as Module);
   const [selectedSubmoduleIndex, setSelectedSubmoduleIndex] = useState(-1);
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
-    axios.get(`/roadmaps/${roadmapName}/${'' + moduleId}`).then((response) => {
+    axios.get(`/roadmaps/${roadmapId}/modules/${moduleId}`).then((response) => {
+      console.log("hello")
       console.log("Response: ", response.data)
       setModule(response.data);
     }).catch((error) => {
@@ -50,9 +52,9 @@ export default function TasksPage() {
   return (
     <div className="flex flex-col grow gap-4 w-full md: w-3/3 lg:w-3/5 px-6">
       {
-        module.name && (
+        module.title && (
           <>
-            <h1>{module.name}</h1>
+            <h1>{module.title}</h1>
             <p>{module.description}</p>
             <Submodules submodules={module.submodules} selectedIndex={selectedSubmoduleIndex} onSelectSubmodule={handleSelectCategory} />
             {

@@ -53,7 +53,7 @@ export default function LearningOverviewPage() {
                 </div>
                 <div className="flex flex-col w-full sm:w-auto text-center justify-center">
                   {
-                    <button className="button-primary sm:invisible sm:group-hover:visible ml-auto" onClick={() => { navigate('/roadmaps/' + roadmap.id + "/" + module.id) }}>
+                    <button className="button-primary sm:invisible sm:group-hover:visible ml-auto" onClick={() => { navigate('/roadmaps/' + roadmap.id + "/modules/" + module.id) }}>
                       Open
                     </button>
                   }

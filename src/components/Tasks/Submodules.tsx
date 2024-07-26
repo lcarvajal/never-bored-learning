@@ -1,6 +1,16 @@
+interface Task {
+  title: string,
+  url: string,
+  description: string,
+  type: string
+}
+
 interface Submodule {
-  name: string;
-  query: string;
+  "id": number,
+  "title": string,
+  "description": string,
+  "query": string,
+  "resources": Task[]
 }
 
 interface SubmodulesProps {
@@ -20,19 +30,19 @@ export default function Submodules(props: SubmodulesProps) {
             <>
               {props.selectedIndex === index ? (
                 <div className="border-2 border-slate-50 text-slate-50 px-2 rounded-xl"
-                  key={index}
+                  key={submodule.id}
                 >
-                  {submodule.name}
+                  {submodule.title}
                 </div>
               )
                 : (
                   <button className="bg-green-500 hover:bg-green-400 text-slate-900 px-2 rounded-xl"
-                    key={index}
+                    key={submodule.id}
                     onClick={() => {
                       props.onSelectSubmodule(index)
                     }}
                   >
-                    {submodule.name}
+                    {submodule.title}
                   </button>
                 )}
             </>
