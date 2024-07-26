@@ -22,38 +22,35 @@ export default function PasswordlessEmailLoginForm(props: FormProps = { accountA
         // This gives you a Google Access Token. You can use it to access the Google API.
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
-        const user = result.user;
+        const authUser = result.user;
 
         if (state) {
-          const profile: {
+          const user: {
             uid: string;
+            authentication_service: string;
             name: string;
             email: string | null;
-            goal: string;
-            reason: string;
-            static_roadmaps: string[];
           } = {
-            uid: user.uid,
+            uid: authUser.uid,
+            authentication_service: "firebase",
             name: state.name,
-            email: user.email,
-            goal: state.goal,
-            reason: state.reason,
-            static_roadmaps: []
+            email: authUser.email,
           };
 
-          if (state.goal.toLowerCase().includes('javascript')) {
-            profile.static_roadmaps = ["javascript"];
-          }
-
-          axios.post('profiles', profile)
+          axios.post('users', user)
             .then((response) => {
               console.log(response.data);
+              axios.post('roadmaps', { description: state.goal })
+              .then((response) => {
+                console.log(response.data);
+              }).catch((error) => {
+                console.log(error);
+              }).finally(() => {
+                navigate('/learning-overview');
+              });
             })
             .catch((error) => {
               console.log(error);
-            })
-            .finally(() => {
-              navigate('/learning-overview');
             });
         }
         else {
