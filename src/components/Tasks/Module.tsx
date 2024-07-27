@@ -67,7 +67,7 @@ export default function Module(props: ModuleProps) {
 
   const createResourcesForSubmodule = async (submoduleId: number, index: number) => {
     try {
-      await axios.post(`/submodules/${submoduleId}/populate`)
+      await axios.post(`/roadmaps/${roadmapId}/modules/${moduleId}/submodules/${submoduleId}/populate`)
       const module_response = await axios.get(`/roadmaps/${roadmapId}/modules/${moduleId}`)
       setModule(module_response.data);
       handleSelectCategory(index);
