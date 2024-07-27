@@ -65,16 +65,16 @@ export default function Module(props: ModuleProps) {
     }
   }
 
-  const createResourcesForSubmodule = async (submoduleId: number, index: number) => {
-    try {
-      await axios.post(`/roadmaps/${roadmapId}/modules/${moduleId}/submodules/${submoduleId}/populate`)
-      const module_response = await axios.get(`/roadmaps/${roadmapId}/modules/${moduleId}`)
-      setModule(module_response.data);
-      handleSelectCategory(index);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  }
+  // const createResourcesForSubmodule = async (submoduleId: number, index: number) => {
+  //   try {
+  //     await axios.post(`/roadmaps/${roadmapId}/modules/${moduleId}/submodules/${submoduleId}/populate`)
+  //     const module_response = await axios.get(`/roadmaps/${roadmapId}/modules/${moduleId}`)
+  //     setModule(module_response.data);
+  //     handleSelectCategory(index);
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //   }
+  // }
 
   const fetchModule = async (index: number) => {
     try {
@@ -98,8 +98,6 @@ export default function Module(props: ModuleProps) {
     if (currentTasks) {
       if (currentTasks.length === 0) {
         setTasks([]);
-        
-        createResourcesForSubmodule(module.submodules[index].id, index);
       }
       else {
         setTasks(currentTasks);
