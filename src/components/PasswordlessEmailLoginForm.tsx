@@ -41,7 +41,7 @@ export default function PasswordlessEmailLoginForm(props: FormProps = { accountA
             .then((response) => {
               console.log(response.data);
               axios.post('roadmaps', { description: state.goal })
-              .then((response) => {
+              .then((response) => { 
                 console.log(response.data);
               }).catch((error) => {
                 console.log(error);

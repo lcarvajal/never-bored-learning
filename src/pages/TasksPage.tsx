@@ -38,6 +38,15 @@ export default function TasksPage() {
       console.log("hello")
       console.log("Response: ", response.data)
       setModule(response.data);
+      if (response.data.submodules.length === 0) {
+        axios.post(`/roadmaps/${roadmapId}/modules/${moduleId}/populate`)
+        .then((response) => {
+          const subModules = response.data
+          setModule((module) => ({ ...module, submodules: subModules }));
+        }).catch((error) => {
+          console.log(error);
+        });
+      }
     }).catch((error) => {
       console.log(error);
     })
