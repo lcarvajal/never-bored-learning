@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Roadmap from '../components/Tasks/Roadmap';
+import Module from '../components/Tasks/Module';
 
 interface Roadmap {
   id: number;
@@ -20,6 +22,7 @@ export default function LearningOverviewPage() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [roadmap, setRoadmap] = useState<Roadmap | null>(null);
+  const [currentModuleId, setCurrentModuleId] = useState<number>(-1);
 
   useEffect(() => {
     // Function to fetch roadmaps and modules
@@ -57,34 +60,26 @@ export default function LearningOverviewPage() {
     return <div>No roadmap found</div>;
   }
 
+  function handleOpenModule(moduleId: number) {
+    console.log("set id")
+    setCurrentModuleId(moduleId);
+    console.log(currentModuleId)
+  }
+
   return (
-    <div className="flex flex-col grow gap-6">
-      {roadmap.modules.length > 0 && (
-        <>
-          <div className="rounded-xl flex flex-col gap-4 mt-12">
-            <h1>Explore Resources</h1>
-            <p>{roadmap.learning_goal}</p>
-          </div>
-          <div className="flex flex-col gap-4">
-            {roadmap.modules.map((module) => (
-              <div key={module.id} className="group border-slate-200 border-2 p-4 rounded-xl flex flex-col sm:flex-row gap-4">
-                <div className="flex flex-col grow w-full">
-                  <p className="font-bold">{module.title}</p>
-                  <p>{module.description}</p>
-                </div>
-                <div className="flex flex-col w-full sm:w-auto text-center justify-center">
-                  <button
-                    className="button-primary sm:invisible sm:group-hover:visible ml-auto"
-                    onClick={() => { navigate(`/roadmaps/${roadmap.id}/modules/${module.id}`) }}
-                  >
-                    Open
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
+    <div className="flex flex-col md:flex-row grow gap-6 w-full">
+      <div className="flex flex-col items-top w-2/6 border-e-2 border-zinc-900 p-4">
+        <Roadmap roadmap={roadmap} handleOpenModule={handleOpenModule} />
+      </div>
+      <div className="flex flex-col w-4/6 gap-4">
+        {
+          currentModuleId === -1 ? (
+            <p className="text-slate-400">Select a module to start</p>
+          ) : (
+            <Module key={currentModuleId} roadmapId={roadmap.id} moduleId={currentModuleId}/>
+          )
+        }
+      </div>
     </div>
   );
 }
