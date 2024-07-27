@@ -7,6 +7,7 @@ import LandingPage from '../pages/public/LandingPage.tsx';
 import ProfilePage from '../pages/ProfilePage.tsx';
 import TasksPage from '../pages/TasksPage.tsx';
 import JavaScriptLandingPage from '../pages/public/JavaScriptLandingPage.tsx';
+import CreateRoadmapPage from '../pages/CreateRoadmapPage.tsx';
 
 export default [
   // Private routes
@@ -24,6 +25,15 @@ export default [
     element: (
       <PrivateRoute>
         <LearningOverviewPage />
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/roadmaps/create/",
+    element: (
+      <PrivateRoute>
+        <CreateRoadmapPage />
       </PrivateRoute>
     ),
     errorElement: <ErrorPage />,

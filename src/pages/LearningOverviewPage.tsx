@@ -30,11 +30,14 @@ export default function LearningOverviewPage() {
         const roadmaps = roadmapsResponse.data;
 
         if (roadmaps.length > 0) {
-          const roadmapId = roadmaps[0].id;
+          const roadmapId = roadmaps.at(-1).id;
 
           // Fetch modules for the selected roadmap
           const modulesResponse = await axios.get(`/roadmaps/${roadmapId}/modules`);
           setRoadmap(modulesResponse.data);
+        }
+        else {
+          navigate('/roadmaps/create')
         }
       } catch (error) {
         console.error('Error fetching data:', error);

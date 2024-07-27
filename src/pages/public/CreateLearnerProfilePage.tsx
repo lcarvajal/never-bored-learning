@@ -5,7 +5,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 interface FormValues {
   name: string;
   goal: string;
-  reason: string;
 }
 
 export default function CreateLearnerProfilePage() {
@@ -15,16 +14,14 @@ export default function CreateLearnerProfilePage() {
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState<FormValues>({
     name: '',
-    goal: '',
-    reason: '',
+    goal: ''
   });
 
   useEffect(() => {
     if (state && state.goal) {
       setFormValues({
         name: "",
-        goal: state.goal,
-        reason: "",
+        goal: state.goal
       });
     }
   }, [state]);
@@ -71,7 +68,7 @@ export default function CreateLearnerProfilePage() {
               name="goal"
               value={formValues.goal}
               maxLength={250}
-              minLength={40}
+              minLength={20}
               onChange={handleInputChange}
               required
             />
