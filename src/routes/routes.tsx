@@ -8,6 +8,7 @@ import ProfilePage from '../pages/ProfilePage.tsx';
 import TasksPage from '../pages/TasksPage.tsx';
 import JavaScriptLandingPage from '../pages/public/JavaScriptLandingPage.tsx';
 import CreateRoadmapPage from '../pages/CreateRoadmapPage.tsx';
+import OrderPreviewPage from '../pages/OrderPreviewPage.tsx';
 
 export default [
   // Private routes
@@ -82,4 +83,9 @@ export default [
     element: <CreateLearnerProfilePage />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/order-preview/",
+    element: <OrderPreviewPage />,
+    errorElement: <ErrorPage />,
+  }
 ]
