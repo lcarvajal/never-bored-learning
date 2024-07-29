@@ -104,7 +104,7 @@ export default function Module(props: ModuleProps) {
   }
 
   if (isLoading === true) {
-    return <p>Scraping resources of the web...</p>
+    return <p>Scraping resources off the web...</p>
   }
 
   return (
