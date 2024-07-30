@@ -57,7 +57,7 @@ export default function LearningOverviewPage() {
   }
 
   if (!roadmap) {
-    return <div>No roadmap found</div>;
+    return <div>No topics found</div>;
   }
 
   function handleOpenModule(moduleId: number) {

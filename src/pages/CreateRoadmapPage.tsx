@@ -44,10 +44,10 @@ export default function CreateRoadmapPage() {
 
   return (
     <div className="flex flex-col gap-6 w-full md:w-1/2 lg:w-1/3 mx-auto text-start">
-      {isLoading ? <h1>Creating Roadmap</h1> : (
+      {isLoading ? <h1>Breaking down topic into modules</h1> : (
         <>
           <form className="flex flex-col gap-2" onSubmit={handleClick}>
-            <label htmlFor="goal" className="text-2xl font-medium">What do you want to learn and why?</label>
+            <label htmlFor="goal" className="text-2xl font-medium">What do you want to learn about?</label>
             <textarea
               className="h-48"
               id="goal"
@@ -62,7 +62,7 @@ export default function CreateRoadmapPage() {
               type="submit"
               className="button-primary mt-4"
             >
-              Create Roadmap
+              Launch Topic
             </button>
           </form>
         </>
