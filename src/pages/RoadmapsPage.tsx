@@ -16,7 +16,7 @@ export default function RoadmapsPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const roadmapsResponse = await axios.get('/roadmaps');
+        const roadmapsResponse = await axios.get('/roadmaps/');
         const roadmaps = roadmapsResponse.data;
         setRoadmaps(roadmaps);
       } catch (error) {

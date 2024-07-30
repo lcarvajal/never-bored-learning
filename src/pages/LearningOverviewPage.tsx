@@ -29,7 +29,7 @@ export default function LearningOverviewPage() {
     const fetchData = async () => {
       try {
         // Fetch the roadmaps
-        const roadmapsResponse = await axios.get('/roadmaps');
+        const roadmapsResponse = await axios.get('/roadmaps/');
         const roadmaps = roadmapsResponse.data;
 
         if (roadmaps.length > 0) {
