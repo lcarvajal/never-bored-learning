@@ -71,7 +71,7 @@ export default function PasswordlessEmailLoginForm(props: FormProps = { accountA
   };
 
   return (
-    <form className="flex flex-col gap-2 w-full md:w-1/2 lg:w-1/3 text-center" onSubmit={handleSignUp}>
+    <form className="flex flex-col gap-2 w-full md:w-1/2 lg:w-1/3 text-center mx-auto" onSubmit={handleSignUp}>
       <h1 className="text-3xl mb-6">
         {props.accountAction === "SIGNUP" ? "Create an account to get your path" : "Log in"}
       </h1>

@@ -35,7 +35,7 @@ h1 {
 }
 
 .button-primary {
-  @apply bg-violet-400;
+  @apply bg-violet-300;
   @apply hover:bg-violet-600;
   @apply px-4;
   @apply py-2;
