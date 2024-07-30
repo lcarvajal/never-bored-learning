@@ -27,7 +27,7 @@ export function Banner() {
   return (
     <>
       {consentGiven === 'undecided' && (
-        <div className="bg-slate-900 text-slate-50 px-12 py-6 sticky bottom-0  w-full border-t-[1px] border-slate-700 flex flex-col sm:flex-row gap-6">
+        <div className="bg-slate-900 text-slate-50 px-12 py-6 sticky bottom-0  w-full border-t-[1px] border-slate-700 flex flex-col sm:flex-row gap-6 mt-auto">
           <p className="flex grow text-start">
             We use tracking cookies to understand how you use 
             the product and help us improve it.

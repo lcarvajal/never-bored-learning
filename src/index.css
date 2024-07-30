@@ -4,23 +4,15 @@
 
 body {
   @apply bg-slate-950;
-  @apply min-h-screen;
-  @apply h-full;
-  @apply w-full;
-  @apply flex;
-  @apply flex-col;
   @apply text-slate-50;
 }
 
 #root {
   @apply flex;
   @apply flex-col;
-  @apply h-screen;
-  @apply items-center;
-  @apply justify-between;
+  @apply min-h-screen;
   @apply text-center;
-
-  @apply-justify-center;
+  @apply gap-2;
 }
 
 input,
@@ -39,11 +31,6 @@ textarea {
 
 h1 {
   @apply text-3xl;
-  @apply font-semibold;
-}
-
-h3 {
-  @apply text-xl;
   @apply font-semibold;
 }
 

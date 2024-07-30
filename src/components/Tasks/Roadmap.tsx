@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 
 interface Roadmap {
   id: number;
@@ -20,6 +21,7 @@ interface RoadmapProps {
 
 export default function Roadmap(props: RoadmapProps) {
   const roadmap = props.roadmap;
+  const navigate = useNavigate();
 
   return (
     <>
@@ -28,7 +30,9 @@ export default function Roadmap(props: RoadmapProps) {
         <div className="flex flex-col gap-4 px-4 mb-4">
           
           <p>{roadmap.learning_goal}</p>
-          <button className="text-sm text-start text-violet-300 hover:text-violet-400">
+          <button 
+            className="text-sm text-start text-violet-300 hover:text-violet-400"
+            onClick={() => navigate('roadmaps')}>
             Change topic
           </button>
           <h2 className="text-sm text-slate-400">Modules</h2>
