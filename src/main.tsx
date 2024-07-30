@@ -51,7 +51,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <PostHogProvider client={posthog}>
       <Navbar />
-      <RouterProvider router={router} />
+      <div className="p-4 w-full">
+        <RouterProvider router={router} />
+      </div>
       <Banner />
     </PostHogProvider>
   </React.StrictMode>,

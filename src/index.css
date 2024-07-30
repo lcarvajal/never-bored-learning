@@ -63,12 +63,12 @@ h1 {
 }
 
 .button-loud {
-  @apply bg-blue-600;
-  @apply hover:bg-blue-800;
+  @apply bg-green-400;
+  @apply hover:bg-green-600;
   @apply px-4;
   @apply py-2;
   @apply rounded;
-  @apply text-slate-50;
+  @apply text-slate-950;
   @apply hover:text-slate-50;
   @apply font-semibold;
 }
