@@ -23,7 +23,7 @@ export default function CreateRoadmapPage() {
         description: formValues.goal
       };
       
-      await axios.post('/roadmaps', roadmap);
+      await axios.post('/roadmaps/', roadmap);
       navigate('/');
     } catch (error) {
       console.error('Error creating roadmap:', error);

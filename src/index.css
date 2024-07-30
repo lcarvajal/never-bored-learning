@@ -11,7 +11,6 @@ body {
   @apply flex;
   @apply flex-col;
   @apply min-h-screen;
-  @apply w-screen;
   @apply text-center;
   @apply gap-2;
 }

@@ -40,7 +40,7 @@ export default function PasswordlessEmailLoginForm(props: FormProps = { accountA
           axios.post('users/', user)
             .then((response) => {
               console.log(response.data);
-              axios.post('roadmaps', { description: state.goal })
+              axios.post('roadmaps/', { description: state.goal })
               .then((response) => { 
                 console.log(response.data);
               }).catch((error) => {
