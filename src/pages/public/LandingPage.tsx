@@ -1,10 +1,15 @@
 import PasswordlessEmailLoginForm from "../../components/PasswordlessEmailLoginForm"
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import posthog from "posthog-js";
 
 export default function LandingPage() {
   const navigate = useNavigate();
   const [showSignUpForm, setShowSignUpForm] = useState(false);
+
+  useEffect(() => {
+    posthog.capture('$pageview', { path: location.pathname });
+  }, [])
 
   return (
     <>

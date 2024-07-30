@@ -75,14 +75,18 @@ export default function PasswordlessEmailLoginForm(props: FormProps = { accountA
       <h1 className="text-3xl">
         {props.accountAction === "SIGNUP" ? "Create an account and save your progress" : "Log in"}
       </h1>
-      <div>
-        <input id="terms-checkbox" className="purple-checkbox w-4 h-4 text-violet-400 bg-gray-100 border-gray-300 rounded focus:ring-violet-600 dark:focus:ring-violet-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-4" 
-          type="checkbox" 
-          required/> 
-        <label htmlFor="terms-checkbox">
-        I agree to the <a href="/terms-and-conditions" target='_blank' className="text-violet-300 hover:text-violet-400">terms and conditions</a> 
-        </label>
-      </div>
+      {
+        props.accountAction === "SIGNUP" && (
+          <div>
+            <input id="terms-checkbox" className="purple-checkbox w-4 h-4 text-violet-400 bg-gray-100 border-gray-300 rounded focus:ring-violet-600 dark:focus:ring-violet-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-4" 
+              type="checkbox" 
+              required/> 
+            <label htmlFor="terms-checkbox">
+            I agree to the <a href="/terms-and-conditions" target='_blank' className="text-violet-300 hover:text-violet-400">terms and conditions</a> 
+            </label>
+          </div>
+        )
+      }
       <button type="submit" className="mx-auto px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-500 hover:border-slate-400  hover:text-slate-400 hover:shadow transition duration-150">
         <img className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" />
         <span>{props.accountAction === "SIGNUP" ? "Sign up" : "Log in"} with Google</span>

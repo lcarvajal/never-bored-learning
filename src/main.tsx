@@ -14,6 +14,7 @@ import Navbar from './components/Navbar';
 // Initialize PostHog
 posthog.init(import.meta.env.VITE_POSTHOG_API_KEY, {
   api_host: "https://eu.i.posthog.com",
+  autocapture: false, 
   persistence: cookieConsentGiven() === 'yes' ? 'localStorage+cookie' : 'memory'
 })
 
