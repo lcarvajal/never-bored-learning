@@ -10,6 +10,7 @@ import JavaScriptLandingPage from '../pages/public/JavaScriptLandingPage.tsx';
 import CreateRoadmapPage from '../pages/CreateRoadmapPage.tsx';
 import OrderPreviewPage from '../pages/OrderPreviewPage.tsx';
 import RoadmapsPage from '../pages/RoadmapsPage.tsx';
+import TermsPage from '../pages/public/TermsPage.tsx';
 
 export default [
   // Private routes
@@ -67,6 +68,15 @@ export default [
     ),
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/order-preview/",
+    element: (
+      <PrivateRoute>
+        <OrderPreviewPage />
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage />,
+  },
 
   // Public routes
   {
@@ -94,8 +104,8 @@ export default [
     errorElement: <ErrorPage />,
   },
   {
-    path: "/order-preview/",
-    element: <OrderPreviewPage />,
+    path: "/terms-and-conditions/",
+    element: <TermsPage />,
     errorElement: <ErrorPage />,
   }
 ]
