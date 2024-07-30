@@ -7,13 +7,14 @@ import { auth } from './util/firebase';
 import { setRequestToken } from './util/axios';
 import posthog from 'posthog-js'
 import { PostHogProvider } from 'posthog-js/react'
-import { Banner } from './components/Banner';
+import { Banner, cookieConsentGiven } from './components/Banner';
 import Navbar from './components/Navbar';
 
 
 // Initialize PostHog
 posthog.init(import.meta.env.VITE_POSTHOG_API_KEY, {
   api_host: "https://eu.i.posthog.com",
+  persistence: cookieConsentGiven() === 'yes' ? 'localStorage+cookie' : 'memory'
 })
 
 

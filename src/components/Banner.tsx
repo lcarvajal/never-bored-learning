@@ -13,7 +13,7 @@ export function Banner() {
   useEffect(() => {
     setConsentGiven(cookieConsentGiven());
   }, []);
-
+  
   const handleAcceptCookies = () => {
     localStorage.setItem('cookie_consent', 'yes');
     setConsentGiven('yes');
@@ -28,7 +28,7 @@ export function Banner() {
     <>
       {consentGiven === 'undecided' && (
         <div className="bg-slate-900 text-slate-50 px-12 py-6 sticky bottom-0  w-full border-t-[1px] border-slate-700 flex flex-col sm:flex-row gap-6">
-          <p className="flex text-start">
+          <p className="flex grow text-start">
             We use tracking cookies to understand how you use 
             the product and help us improve it.
             Please accept cookies to help us improve.
