@@ -47,7 +47,7 @@ export default function CreateLearnerProfilePage() {
   };
 
   return (
-    <div className="flex flex-col gap-6 w-full md:w-1/2 lg:w-1/3">
+    <div className="flex flex-col gap-6 w-full md:w-1/2 lg:w-1/3 mx-auto text-start">
       {isLoading ? <h1>{loadingMessage}</h1> : (
         <>
           <h1 className="text-3xl">Set your goal</h1>

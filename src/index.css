@@ -18,6 +18,9 @@ body {
   @apply h-screen;
   @apply items-center;
   @apply justify-between;
+  @apply text-center;
+
+  @apply-justify-center;
 }
 
 #navbar {
@@ -60,6 +63,7 @@ h1 {
   @apply text-slate-900;
   @apply hover:text-slate-50;
   @apply font-semibold;
+  @apply h-fit;
 }
 
 .button-loud {
@@ -71,6 +75,7 @@ h1 {
   @apply text-slate-950;
   @apply hover:text-slate-50;
   @apply font-semibold;
+  @apply h-fit;
 }
 
 .button-lowkey {
@@ -82,4 +87,5 @@ h1 {
   @apply text-slate-300;
   @apply text-sm;
   @apply hover:text-slate-100;
+  @apply h-fit;
 }
