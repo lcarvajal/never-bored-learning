@@ -33,7 +33,7 @@ export default function Roadmap(props: RoadmapProps) {
           <button 
             className="text-sm text-start text-violet-300 hover:text-violet-400"
             onClick={() => navigate('roadmaps')}>
-            Change topic
+            Switch topics
           </button>
           <h2 className="text-sm text-slate-400">Modules</h2>
         </div>
