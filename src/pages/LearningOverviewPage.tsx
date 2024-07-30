@@ -50,7 +50,7 @@ export default function LearningOverviewPage() {
     };
 
     fetchData();
-  }, []); // Only run once on mount
+  }, []);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -61,9 +61,7 @@ export default function LearningOverviewPage() {
   }
 
   function handleOpenModule(moduleId: number) {
-    console.log("set id")
     setCurrentModuleId(moduleId);
-    console.log(currentModuleId)
   }
 
   return (

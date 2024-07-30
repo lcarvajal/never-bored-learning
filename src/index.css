@@ -5,6 +5,8 @@
 body {
   @apply bg-slate-950;
   @apply min-h-screen;
+  @apply h-full;
+  @apply w-full;
   @apply flex;
   @apply flex-col;
   @apply text-slate-50;
@@ -13,19 +15,21 @@ body {
 #root {
   @apply flex;
   @apply flex-col;
-  @apply grow;
+  @apply h-screen;
   @apply items-center;
-  @apply justify-center;
-  @apply p-6;
+  @apply justify-between;
 }
 
 #navbar {
   @apply flex;
   @apply items-center;
-  @apply bg-slate-950;
+  @apply bg-slate-900;
   @apply px-10;
   @apply py-4;
   @apply text-violet-400;
+  @apply w-full;
+  @apply border-b-[1px];
+  @apply border-slate-700;
 }
 
 input,
@@ -56,4 +60,26 @@ h1 {
   @apply text-slate-900;
   @apply hover:text-slate-50;
   @apply font-semibold;
+}
+
+.button-loud {
+  @apply bg-blue-600;
+  @apply hover:bg-blue-800;
+  @apply px-4;
+  @apply py-2;
+  @apply rounded;
+  @apply text-slate-50;
+  @apply hover:text-slate-50;
+  @apply font-semibold;
+}
+
+.button-lowkey {
+  @apply bg-none;
+  @apply hover:bg-slate-600;
+  @apply px-4;
+  @apply py-2;
+  @apply rounded;
+  @apply text-slate-300;
+  @apply text-sm;
+  @apply hover:text-slate-100;
 }

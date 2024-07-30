@@ -7,6 +7,8 @@ import { auth } from './util/firebase';
 import { setRequestToken } from './util/axios';
 import posthog from 'posthog-js'
 import { PostHogProvider } from 'posthog-js/react'
+import { Banner } from './components/Banner';
+import Navbar from './components/Navbar';
 
 
 // Initialize PostHog
@@ -48,7 +50,9 @@ const router = createBrowserRouter([...routes]);
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <PostHogProvider client={posthog}>
-     <RouterProvider router={router} />
+      <Navbar />
+      <RouterProvider router={router} />
+      <Banner />
     </PostHogProvider>
   </React.StrictMode>,
 )
