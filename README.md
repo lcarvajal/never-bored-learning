@@ -13,3 +13,7 @@ nudges towards learning goals.
 ## Commands
 
 - `npm run dev`
+
+## Prod server
+
+- `https://never-bored-backend.happyground-ce0bf2ca.eastus.azurecontainerapps.io/`
