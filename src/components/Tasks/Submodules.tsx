@@ -29,7 +29,7 @@ export default function Submodules(props: SubmodulesProps) {
           submodules.map((submodule, index) => (
             <>
               {props.selectedIndex === index ? (
-                <div className="border-2 border-slate-50 text-slate-50 px-2 rounded-xl"
+                <div className="border-[1px] border-zinc-400 text-zinc-400 px-2 rounded-xl"
                   key={submodule.id}
                 >
                   {submodule.title}

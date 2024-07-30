@@ -110,7 +110,7 @@ export default function Module(props: ModuleProps) {
   return (
     <>
       <h1>{module.title}</h1>
-      <p>{module.description}</p>
+      <p className="">{module.description}</p>
       <Submodules submodules={module.submodules} selectedIndex={selectedSubmoduleIndex} onSelectSubmodule={handleSelectCategory} />
       {
       tasks.length > 0 ? <Tasks tasks={tasks} /> : (
