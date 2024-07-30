@@ -12,10 +12,10 @@ export default function Task(props: TaskProps) {
 
   return (
     <div id={props.title} className="flex flex-row justify-between p-4 bg-slate-950 hover:bg-slate-900 cursor-pointer text-slate-50 rounded-xl" onClick={handleOnStartTask}>
-      <div className="flex flex-col">
-        <p><span>{props.type}</span></p>
+      <div className="flex flex-col ">
+        {/* <p className="text-sm text-sky-200">{props.type}</p> */}
         <h4 className="font-semibold text-lg">{props.title}</h4>
-        <p>{props.description}</p>
+        <p className="text-ellipsis overflow-hidden ... text-sm text-zinc-400 max-h-10">{props.description}</p>
       </div>
       <div className="">
         <button>↗</button>

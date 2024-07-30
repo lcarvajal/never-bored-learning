@@ -72,7 +72,7 @@ export default function LearningOverviewPage() {
       <div className="flex flex-col w-4/6 gap-4">
         {
           currentModuleId === -1 ? (
-            <p className="text-slate-400">Select a module to start</p>
+            <p className="text-slate-400">Select a module on the left to start</p>
           ) : (
             <Module key={currentModuleId} roadmapId={roadmap.id} moduleId={currentModuleId}/>
           )

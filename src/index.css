@@ -42,6 +42,11 @@ h1 {
   @apply font-semibold;
 }
 
+h3 {
+  @apply text-xl;
+  @apply font-semibold;
+}
+
 .button-primary {
   @apply bg-violet-400;
   @apply hover:bg-violet-600;
