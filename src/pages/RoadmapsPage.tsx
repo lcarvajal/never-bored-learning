@@ -28,7 +28,7 @@ export default function RoadmapsPage() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-2 w-full md:w-1/2 text-start mx-auto">
+    <div className="flex flex-col gap-2 w-full md:w-2/3 text-start mx-auto">
       <div className="flex flex-row justify-between">
       <h1>Your Topics</h1>
       <button className="button-primary"
@@ -39,8 +39,9 @@ export default function RoadmapsPage() {
       <div>
         {roadmaps.map((roadmap) => (
           <div 
-            className="bg-slate-950 hover:bg-slate-900 cursor-pointer text-slate-50 rounded-xl p-4"
-            key={roadmap.id}>
+            className="bg-slate-950 hover:bg-slate-900 cursor-pointer text-slate-50 rounded-xl p-4 w-full"
+            key={roadmap.id}
+            onClick={() => navigate(`/roadmaps/${roadmap.id}`)}>
           <p className="font-semibold text-lg text-violet-300">
             {roadmap.learning_goal}
           </p>
