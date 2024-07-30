@@ -2,10 +2,12 @@
 
 export default function TermsPage() {
   return (
-    <div>
-      <h1>Terms and Conditions</h1>
-
-      <h1>Privacy Policy</h1>
+    <div className="flex flex-col h-screen">
+      <div className="flex flex-row justify-between p-6">
+        <h3 className="flex grow text-3xl">Terms of Service and Privacy Policy</h3>
+        <button className="flex button-primary" onClick={() => window.open('./terms-and-privacy.pdf', '_blank')}>Download</button>
+      </div>
+      <iframe src="./terms-and-privacy.pdf" className="flex grow w-full"/>
     </div>
   );
 }
