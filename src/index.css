@@ -15,7 +15,19 @@ body {
   @apply gap-2;
 }
 
-input,
+.text-box {
+  @apply bg-slate-800;
+  @apply border-none;
+  @apply p-2;
+  @apply text-slate-50;
+  @apply rounded;
+  @apply focus:outline-none;
+  @apply focus:ring-0;
+  @apply focus:border-violet-400;
+  @apply focus:border-solid;
+  @apply focus:border-2;
+}
+
 textarea {
   @apply bg-slate-800;
   @apply border-none;

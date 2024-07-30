@@ -60,6 +60,7 @@ export default function CreateLearnerProfilePage() {
               value={formValues.name}
               onChange={handleInputChange}
               required
+              className='text-box'
             />
             <label htmlFor="goal">What do you want to learn and why?</label>
             <textarea

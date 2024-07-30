@@ -18,7 +18,7 @@ export default function LandingPage() {
           <img src="./falling-books.png" alt="books" className="w-56 mx-auto -rotate-45 mt-24" />
           <h1>Gather learning resources fast</h1>
           <button className="button-primary w-60 mx-auto" onClick={() => navigate('/create-learner-profile')}>Start</button>
-          <button className="text-violet-400" onClick={() => setShowSignUpForm(true)}>Already have an account?</button>
+          <button className="text-violet-300 hover:text-violet-400" onClick={() => setShowSignUpForm(true)}>Already have an account?</button>
         </div>
       )
       }
