@@ -29,7 +29,7 @@ export default function Roadmap(props: RoadmapProps) {
       <>
         <div className="flex flex-col gap-4 px-4 mb-4">
           
-          <p>{roadmap.learning_goal}</p>
+          <p className="font-medium">{roadmap.learning_goal}</p>
           <button 
             className="text-sm text-start text-violet-300 hover:text-violet-400"
             onClick={() => navigate('roadmaps')}>
