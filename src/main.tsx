@@ -5,6 +5,15 @@ import { createBrowserRouter, RouterProvider, } from "react-router-dom"
 import routes from './routes/routes';
 import { auth } from './util/firebase';
 import { setRequestToken } from './util/axios';
+import posthog from 'posthog-js'
+import { PostHogProvider } from 'posthog-js/react'
+
+
+// Initialize PostHog
+posthog.init(import.meta.env.VITE_POSTHOG_API_KEY, {
+  api_host: "https://eu.i.posthog.com",
+})
+
 
 // Register the service worker for push notifications
 if ('serviceWorker' in navigator) {
@@ -38,6 +47,8 @@ const router = createBrowserRouter([...routes]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <PostHogProvider client={posthog}>
+     <RouterProvider router={router} />
+    </PostHogProvider>
   </React.StrictMode>,
 )
