@@ -23,18 +23,6 @@ body {
   @apply-justify-center;
 }
 
-#navbar {
-  @apply flex;
-  @apply items-center;
-  @apply bg-slate-900;
-  @apply px-10;
-  @apply py-4;
-  @apply text-violet-400;
-  @apply w-full;
-  @apply border-b-[1px];
-  @apply border-slate-700;
-}
-
 input,
 textarea {
   @apply bg-slate-800;

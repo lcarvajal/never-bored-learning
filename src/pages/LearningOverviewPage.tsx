@@ -65,7 +65,7 @@ export default function LearningOverviewPage() {
   }
 
   return (
-    <div className="flex flex-col md:flex-row grow gap-6 w-full">
+    <div className="flex flex-col md:flex-row grow gap-6 w-full text-start">
       <div className="flex flex-col items-top w-2/6 border-e-2 border-zinc-900 p-4">
         <Roadmap roadmap={roadmap} handleOpenModule={handleOpenModule} />
       </div>
