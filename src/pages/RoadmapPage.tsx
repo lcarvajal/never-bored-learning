@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Modules from '../components/Tasks/Roadmap';
+import Modules from '../components/Tasks/Modules';
 import Module from '../components/Tasks/Module';
 
 interface Roadmap {
