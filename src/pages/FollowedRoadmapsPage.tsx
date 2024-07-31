@@ -9,7 +9,7 @@ interface Roadmap {
   created_at: string
 }
 
-export default function RoadmapsPage() {
+export default function FollowedRoadmapsPage() {
   const [roadmaps, setRoadmaps] = useState<Roadmap[]>([]);
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ export default function RoadmapsPage() {
       <div className="flex flex-row justify-between">
       <h1>Your Topics</h1>
       <button className="button-primary"
-        onClick={() => navigate('/roadmaps/create')}>
+        onClick={() => navigate('/roadmaps/new/')}>
         New topic
         </button>
       </div>

@@ -1,16 +1,17 @@
-import LearningOverviewPage from '../pages/LearningOverviewPage.tsx';
+import LearningOverviewPage from '../pages/RoadmapPage.tsx';
 import PrivateRoute from './PrivateRoute.tsx';
 import ErrorPage from '../pages/public/ErrorPage.tsx';
 import SignUpPage from '../pages/public/SignUpPage.tsx';
 import CreateLearnerProfilePage from '../pages/public/CreateLearnerProfilePage.tsx';
 import LandingPage from '../pages/public/LandingPage.tsx';
 import ProfilePage from '../pages/ProfilePage.tsx';
-import TasksPage from '../pages/TasksPage.tsx';
 import JavaScriptLandingPage from '../pages/public/JavaScriptLandingPage.tsx';
 import CreateRoadmapPage from '../pages/CreateRoadmapPage.tsx';
 import OrderPreviewPage from '../pages/OrderPreviewPage.tsx';
-import RoadmapsPage from '../pages/RoadmapsPage.tsx';
 import TermsPage from '../pages/public/TermsPage.tsx';
+import RoadmapPage from '../pages/RoadmapPage.tsx';
+import FollowedRoadmapsPage from '../pages/FollowedRoadmapsPage.tsx';
+import { Route } from 'react-router-dom';
 
 export default [
   // Private routes
@@ -24,37 +25,28 @@ export default [
     errorElement: <ErrorPage />,
   },
   {
-    path: "/learning-overview/",
-    element: (
-      <PrivateRoute>
-        <LearningOverviewPage />
-      </PrivateRoute>
-    ),
-    errorElement: <ErrorPage />,
-  },
-  {
     path: "/roadmaps",
     element: (
       <PrivateRoute>
-        <RoadmapsPage />
+        <FollowedRoadmapsPage />
       </PrivateRoute>
     ),
     errorElement: <ErrorPage />,
   },
   {
-    path: "/roadmaps/create/",
+    path: "/roadmaps/:roadmapId",
+    element: (
+      <PrivateRoute>
+        <RoadmapPage />
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/roadmaps/new/",
     element: (
       <PrivateRoute>
         <CreateRoadmapPage />
-      </PrivateRoute>
-    ),
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "roadmaps/:roadmapId/modules/:moduleId",
-    element: (
-      <PrivateRoute>
-        <TasksPage />
       </PrivateRoute>
     ),
     errorElement: <ErrorPage />,

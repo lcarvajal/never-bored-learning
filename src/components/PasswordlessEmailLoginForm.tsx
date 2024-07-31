@@ -46,7 +46,7 @@ export default function PasswordlessEmailLoginForm(props: FormProps = { accountA
               }).catch((error) => {
                 console.log(error);
               }).finally(() => {
-                navigate('/learning-overview');
+                navigate('/roadmaps/');
               });
             })
             .catch((error) => {
@@ -55,7 +55,7 @@ export default function PasswordlessEmailLoginForm(props: FormProps = { accountA
         }
         else {
           console.log("State not set");
-          navigate('/learning-overview');
+          navigate('/roadmaps/');
         }
       }).catch((error) => {
         // Handle Errors here.

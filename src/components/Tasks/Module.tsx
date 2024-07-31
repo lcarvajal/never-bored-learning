@@ -55,8 +55,6 @@ export default function Module(props: ModuleProps) {
 
         await new Promise(resolve => setTimeout(resolve, 6000));
         const module_response = await axios.get(`/roadmaps/${roadmapId}/modules/${moduleId}`)
-        console.log("RECEIVED DATA")
-        console.log(module_response.data)
         setModule(module_response.data);
         setIsLoading(false);
       }
@@ -75,14 +73,14 @@ export default function Module(props: ModuleProps) {
       setModule(module_response.data); 
       setSelectedSubmoduleIndex(index);
       setTasks(module_response.data.submodules[index].resources);
-      handleSelectCategory(index);
+      handleSelectSubmodule(index);
       setIsLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   }
 
-  function handleSelectCategory(index: number) {
+  function handleSelectSubmodule(index: number) {
     setSelectedSubmoduleIndex(index);
       const currentTasks = module.submodules[index].resources;
       if (currentTasks) {
@@ -111,7 +109,7 @@ export default function Module(props: ModuleProps) {
     <>
       <h1>{module.title}</h1>
       <p className="">{module.description}</p>
-      <Submodules submodules={module.submodules} selectedIndex={selectedSubmoduleIndex} onSelectSubmodule={handleSelectCategory} />
+      <Submodules submodules={module.submodules} selectedIndex={selectedSubmoduleIndex} onSelectSubmodule={handleSelectSubmodule} />
       {
       tasks.length > 0 ? <Tasks tasks={tasks} /> : (
         <>

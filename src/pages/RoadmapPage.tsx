@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Roadmap from '../components/Tasks/Roadmap';
 import Module from '../components/Tasks/Module';
 
@@ -18,30 +18,39 @@ interface Module {
   description: string;
 }
 
-export default function LearningOverviewPage() {
+export default function RoadmapPage() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [roadmap, setRoadmap] = useState<Roadmap | null>(null);
   const [currentModuleId, setCurrentModuleId] = useState<number>(-1);
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(true); // State for menu visibility
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(true);
+  const { roadmapId } = useParams();
 
   useEffect(() => {
     // Function to fetch roadmaps and modules
     const fetchData = async () => {
       try {
-        // Fetch the roadmaps
-        const roadmapsResponse = await axios.get('/roadmaps/');
-        const roadmaps = roadmapsResponse.data;
-
-        if (roadmaps.length > 0) {
-          const roadmapId = roadmaps.at(-1).id;
-
-          // Fetch modules for the selected roadmap
+        console.log("WHAT")
+        console.log(roadmapId)
+        if (roadmapId) {
           const modulesResponse = await axios.get(`/roadmaps/${roadmapId}/modules`);
           setRoadmap(modulesResponse.data);
         }
         else {
-          navigate('/roadmaps/create')
+          // Fetch the roadmaps
+          const roadmapsResponse = await axios.get('/roadmaps/');
+          const roadmaps = roadmapsResponse.data;
+
+          if (roadmaps.length > 0) {
+            const roadmapId = roadmaps.at(-1).id;
+
+            // Fetch modules for the selected roadmap
+            const modulesResponse = await axios.get(`/roadmaps/${roadmapId}/modules`);
+            setRoadmap(modulesResponse.data);
+          }
+          else {
+            navigate('/roadmaps/new/')
+          }
         }
       } catch (error) {
         console.error('Error fetching data:', error);
