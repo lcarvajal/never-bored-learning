@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Modules from '../components/Tasks/Modules';
-import Module from '../components/Tasks/Module';
+import Modules from '../components/Roadmap/Modules';
+import Module from '../components/Roadmap/Module';
 
 interface Roadmap {
   id: number;
