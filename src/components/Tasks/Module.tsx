@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Submodules from './Submodules';
-import Tasks from './Tasks';
+import Resources from './Resources';
 
 interface Module {
   id: number,
@@ -111,7 +111,7 @@ export default function Module(props: ModuleProps) {
       <p className="">{module.description}</p>
       <Submodules submodules={module.submodules} selectedIndex={selectedSubmoduleIndex} onSelectSubmodule={handleSelectSubmodule} />
       {
-      tasks.length > 0 ? <Tasks tasks={tasks} /> : (
+      tasks.length > 0 ? <Resources tasks={tasks} /> : (
         <>
         { (selectedSubmoduleIndex === -1) ? (
             <p>Select a submodule above to get started</p>

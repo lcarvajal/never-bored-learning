@@ -5,7 +5,7 @@ interface TaskProps {
   type: string
 }
 
-export default function Task(props: TaskProps) {
+export default function Resource(props: TaskProps) {
   function handleOnStartTask() {
     window.open(props.url, '_blank');
   }
