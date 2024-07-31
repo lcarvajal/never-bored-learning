@@ -90,7 +90,7 @@ export default function LearningOverviewPage() {
 
       {/* Roadmap Section */}
       <div
-        className={`bg-zinc-900 md:bg-none flex flex-col items-top w-full md:w-2/6 border-e-2 border-zinc-900 p-4 transition-transform duration-300 md:transform md:translate-x-0 ${
+        className={`bg-zinc-900 md:bg-slate-950 flex flex-col items-top w-full md:w-2/6 border-e-2 border-zinc-900 p-4 transition-transform duration-300 md:transform md:translate-x-0 ${
           isMenuOpen ? 'block' : 'hidden md:block'
         }`}
       >
