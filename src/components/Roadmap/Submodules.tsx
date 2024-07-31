@@ -36,7 +36,7 @@ export default function Submodules(props: SubmodulesProps) {
                 </div>
               )
                 : (
-                  <button className="bg-blue-600 hover:bg-blue-800 text-slate-950 hover:text-slate-50 py-2 px-2 md:py-0 md:px-2 rounded-xl"
+                  <button className="bg-blue-400 hover:bg-blue-600 text-slate-950 hover:text-slate-50 py-2 px-2 md:py-0 md:px-2 rounded-xl"
                     key={submodule.id}
                     onClick={() => {
                       props.onSelectSubmodule(index)
