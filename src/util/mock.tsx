@@ -58,7 +58,7 @@ export const mockSubmodules = [
   }
 ]
 
-export const mockTasks = [
+export const mockResources = [
   {
     "title": "Introduction to Machine Learning",
     "url": "https://www.wolfram.com/language/introduction-machine-learning/preface/",

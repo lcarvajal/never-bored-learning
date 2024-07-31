@@ -1,4 +1,4 @@
-interface Task {
+interface Resource {
   title: string,
   url: string,
   description: string,
@@ -10,7 +10,7 @@ interface Submodule {
   "title": string,
   "description": string,
   "query": string,
-  "resources": Task[]
+  "resources": Resource[]
 }
 
 interface SubmodulesProps {
@@ -51,4 +51,4 @@ export default function Submodules(props: SubmodulesProps) {
       </div>
     </div>
   );
-};
+}

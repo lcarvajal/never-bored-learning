@@ -15,10 +15,11 @@ interface Submodule {
   title: string,
   description: string,
   query: string,
-  resources: Task[]
+  resources: Resource[]
 }
 
-interface Task {
+interface Resource {
+  id: number,
   title: string,
   url: string,
   description: string,
@@ -34,7 +35,7 @@ export default function Module(props: ModuleProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [module, setModule] = useState<Module>({} as Module);
   const [selectedSubmoduleIndex, setSelectedSubmoduleIndex] = useState(-1);
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [resources, setResources] = useState<Resource[]>([]);
   
   const roadmapId = props.roadmapId;
   const moduleId = props.moduleId;
@@ -72,7 +73,7 @@ export default function Module(props: ModuleProps) {
       const module_response = await axios.get(`/roadmaps/${roadmapId}/modules/${moduleId}`)
       setModule(module_response.data); 
       setSelectedSubmoduleIndex(index);
-      setTasks(module_response.data.submodules[index].resources);
+      setResources(module_response.data.submodules[index].resources);
       handleSelectSubmodule(index);
       setIsLoading(false);
     } catch (error) {
@@ -82,13 +83,13 @@ export default function Module(props: ModuleProps) {
 
   function handleSelectSubmodule(index: number) {
     setSelectedSubmoduleIndex(index);
-      const currentTasks = module.submodules[index].resources;
-      if (currentTasks) {
-        if (currentTasks.length === 0) {
-          setTasks([]);
+      const currentResources = module.submodules[index].resources;
+      if (currentResources) {
+        if (currentResources.length === 0) {
+          setResources([]);
         }
         else {
-          setTasks(currentTasks);
+          setResources(currentResources);
         }
       }
   }
@@ -111,7 +112,7 @@ export default function Module(props: ModuleProps) {
       <p className="">{module.description}</p>
       <Submodules submodules={module.submodules} selectedIndex={selectedSubmoduleIndex} onSelectSubmodule={handleSelectSubmodule} />
       {
-      tasks.length > 0 ? <Resources tasks={tasks} /> : (
+      resources.length > 0 ? <Resources resources={resources} /> : (
         <>
         { (selectedSubmoduleIndex === -1) ? (
             <p>Select a submodule above to get started</p>
