@@ -69,7 +69,7 @@ export default [
     errorElement: <ErrorPage />,
   },
   {
-    path: "/order-preview/",
+    path: "/checkout/",
     element: (
       <PrivateRoute>
         <OrderPreviewPage />

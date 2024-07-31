@@ -4,9 +4,12 @@ import { useEffect, useState } from "react";
 function createCheckoutSession(event: React.FormEvent<HTMLFormElement>) {
   event.preventDefault();
 
-  axios.post('/users/create-checkout-session').then((response) => {
+  axios.post('/subscriptions/checkout-session').then((response) => {
     console.log(response.data.redirect_url)
-    window.open(response.data.redirect_url,"_self");
+    const redirect_url = response.data.redirect_url
+    if (redirect_url !== null) {
+      window.open(response.data.redirect_url,"_self");
+    }
   }).catch((error) => {
     console.log(error)
   })
@@ -18,6 +21,7 @@ const ProductDisplay = () => (
       <img
         src="https://i.imgur.com/EHyR2nP.png"
         alt="The cover of Stubborn Attachments"
+        className="mx-auto"
       />
       <div className="description">
       <h3>Stubborn Attachments</h3>
