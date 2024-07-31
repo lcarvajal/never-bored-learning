@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Roadmap from '../components/Tasks/Roadmap';
+import Modules from '../components/Tasks/Roadmap';
 import Module from '../components/Tasks/Module';
 
 interface Roadmap {
@@ -58,7 +58,7 @@ export default function RoadmapPage() {
     };
 
     fetchData();
-  }, [navigate]);
+  }, [navigate, roadmapId]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -76,6 +76,7 @@ export default function RoadmapPage() {
   }
 
   return (
+    <div>
     <div className="flex flex-col md:flex-row grow gap-6 text-start">
       {/* Hamburger Menu Button */}
       <button
@@ -95,13 +96,21 @@ export default function RoadmapPage() {
         Modules
       </button>
 
-      {/* Roadmap Section */}
+      {/* Modules Section */}
       <div
-        className={`bg-zinc-900 md:bg-slate-950 flex flex-col items-top w-full md:w-2/6 border-e-2 border-zinc-900 p-4 transition-transform duration-300 md:transform md:translate-x-0 ${
+        className={`bg-zinc-900 md:bg-slate-950 flex flex-colitems-top w-full md:w-2/6 border-e-2 border-zinc-900 p-4 transition-transform duration-300 md:transform md:translate-x-0 ${
           isMenuOpen ? 'block' : 'hidden md:block'
         }`}
       >
-        <Roadmap roadmap={roadmap} handleOpenModule={handleOpenModule} />
+        <div className="flex flex-col text-start px-4">
+          {roadmap.learning_goal && (<p className="text-xl font-semibold">{roadmap.learning_goal}</p>)}
+          <button 
+              className="text-sm text-start text-violet-300 hover:text-violet-400 mb-6"
+              onClick={() => navigate('/roadmaps/')}>
+              Change topic
+            </button>
+        </div>
+        <Modules modules={roadmap.modules} handleOpenModule={handleOpenModule} />
       </div>
 
       {/* Main Content */}
@@ -114,6 +123,7 @@ export default function RoadmapPage() {
           )
         }
       </div>
+    </div>
     </div>
   );
 }

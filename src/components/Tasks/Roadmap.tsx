@@ -1,12 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
-interface Roadmap {
-  id: number;
-  title: string;
-  owner_id: number;
-  learning_goal: string;
-  modules: Module[];
-}
 
 interface Module {
   id: number;
@@ -14,31 +5,23 @@ interface Module {
   description: string;
 }
 
-interface RoadmapProps {
-  roadmap: Roadmap;
+interface ModulesProps {
+  modules: Module[];
   handleOpenModule: (moduleId: number) => void;
 }
 
-export default function Roadmap(props: RoadmapProps) {
-  const roadmap = props.roadmap;
-  const navigate = useNavigate();
+export default function Modules(props: ModulesProps) {
+  const modules = props.modules;
 
   return (
     <>
-    {roadmap.modules.length > 0 && (
+    {modules.length > 0 && (
       <>
-        <div className="flex flex-col gap-4 px-4 mb-4">
-          
-          <p className="font-medium">{roadmap.learning_goal}</p>
-          <button 
-            className="text-sm text-start text-violet-300 hover:text-violet-400"
-            onClick={() => navigate('/roadmaps/')}>
-            Change topic
-          </button>
+        <div className="px-4 mb-4">
           <h2 className="text-sm text-slate-400">Modules</h2>
         </div>
         <div className="flex flex-col gap-4 align-items-start">
-          {roadmap.modules.map((module) => (
+          {modules.map((module) => (
             <div 
               key={module.id} 
               className="group p-4 rounded-xl flex flex-col gap-4 hover:bg-zinc-900 text-zinc-400 hover:text-slate-50 cursor-pointer"

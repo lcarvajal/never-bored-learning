@@ -1,4 +1,3 @@
-import LearningOverviewPage from '../pages/RoadmapPage.tsx';
 import PrivateRoute from './PrivateRoute.tsx';
 import ErrorPage from '../pages/public/ErrorPage.tsx';
 import SignUpPage from '../pages/public/SignUpPage.tsx';
@@ -18,7 +17,7 @@ export default [
     path: "/",
     element: (
       <PrivateRoute>
-        <LearningOverviewPage />
+        <FollowedRoadmapsPage />
       </PrivateRoute>
     ),
     errorElement: <ErrorPage />,
