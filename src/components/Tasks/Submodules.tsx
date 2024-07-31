@@ -24,19 +24,19 @@ export default function Submodules(props: SubmodulesProps) {
 
   return (
     <div>
-      <div className="flex flex-row gap-2">
+      <div className="flex flex-row flex-wrap gap-2">
         {
           submodules.map((submodule, index) => (
             <>
               {props.selectedIndex === index ? (
-                <div className="border-[1px] border-zinc-400 text-zinc-400 px-2 rounded-xl"
+                <div className="border-[1px] border-zinc-400 text-zinc-400 py-2 px-2 rounded-xl"
                   key={submodule.id}
                 >
                   {submodule.title}
                 </div>
               )
                 : (
-                  <button className="bg-blue-400 hover:bg-blue-600 text-slate-950 hover:text-slate-50 px-2 rounded-xl"
+                  <button className="bg-blue-400 hover:bg-blue-600 text-slate-950 hover:text-slate-50 py-2 px-2 rounded-xl"
                     key={submodule.id}
                     onClick={() => {
                       props.onSelectSubmodule(index)

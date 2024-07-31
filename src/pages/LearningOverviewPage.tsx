@@ -23,6 +23,7 @@ export default function LearningOverviewPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [roadmap, setRoadmap] = useState<Roadmap | null>(null);
   const [currentModuleId, setCurrentModuleId] = useState<number>(-1);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(true); // State for menu visibility
 
   useEffect(() => {
     // Function to fetch roadmaps and modules
@@ -50,7 +51,7 @@ export default function LearningOverviewPage() {
     };
 
     fetchData();
-  }, []);
+  }, [navigate]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -61,18 +62,46 @@ export default function LearningOverviewPage() {
   }
 
   function handleOpenModule(moduleId: number) {
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    }
     setCurrentModuleId(moduleId);
   }
 
   return (
-    <div className="flex flex-col md:flex-row grow gap-6 w-full text-start">
-      <div className="flex flex-col items-top w-2/6 border-e-2 border-zinc-900 p-4">
+    <div className="flex flex-col md:flex-row grow gap-6 text-start">
+      {/* Hamburger Menu Button */}
+      <button
+        className="flex flex-row gap-2 w-fit z-50 p-2 bg-gray-800 text-white rounded-md md:hidden"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        {/* Hamburger Icon */}
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        Modules
+      </button>
+
+      {/* Roadmap Section */}
+      <div
+        className={`bg-zinc-900 md:bg-none flex flex-col items-top w-full md:w-2/6 border-e-2 border-zinc-900 p-4 transition-transform duration-300 md:transform md:translate-x-0 ${
+          isMenuOpen ? 'block' : 'hidden md:block'
+        }`}
+      >
         <Roadmap roadmap={roadmap} handleOpenModule={handleOpenModule} />
       </div>
-      <div className="flex flex-col w-4/6 gap-4">
+
+      {/* Main Content */}
+      <div className="flex flex-col w-full md:w-4/6 gap-4">
         {
           currentModuleId === -1 ? (
-            <p className="text-slate-400">Select a module on the left to start</p>
+            <p className="text-slate-400">Select a module to start</p>
           ) : (
             <Module key={currentModuleId} roadmapId={roadmap.id} moduleId={currentModuleId}/>
           )
