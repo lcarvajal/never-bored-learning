@@ -30,8 +30,6 @@ export default function RoadmapPage() {
     // Function to fetch roadmaps and modules
     const fetchData = async () => {
       try {
-        console.log("WHAT")
-        console.log(roadmapId)
         if (roadmapId) {
           const modulesResponse = await axios.get(`/roadmaps/${roadmapId}/modules`);
           setRoadmap(modulesResponse.data);

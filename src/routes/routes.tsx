@@ -11,7 +11,6 @@ import OrderPreviewPage from '../pages/OrderPreviewPage.tsx';
 import TermsPage from '../pages/public/TermsPage.tsx';
 import RoadmapPage from '../pages/RoadmapPage.tsx';
 import FollowedRoadmapsPage from '../pages/FollowedRoadmapsPage.tsx';
-import { Route } from 'react-router-dom';
 
 export default [
   // Private routes
