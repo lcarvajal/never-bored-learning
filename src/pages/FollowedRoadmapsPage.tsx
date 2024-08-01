@@ -30,7 +30,7 @@ export default function FollowedRoadmapsPage() {
   return (
     <div className="flex flex-col gap-2 w-full md:w-2/3 text-start mx-auto">
       <div className="flex flex-row justify-between p-4">
-        <h1>Your Topics</h1>
+        <h1 className="font-normal">Your Topics</h1>
         <button className="button-primary"
           onClick={() => navigate('/roadmaps/new/')}>
           New topic
