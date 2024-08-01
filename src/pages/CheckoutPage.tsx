@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import fallingBooksImageURL from "../assets/falling-books.png";
+import { useNavigate } from "react-router-dom";
 
 function createCheckoutSession(event: React.FormEvent<HTMLFormElement>) {
   event.preventDefault();
@@ -50,11 +51,16 @@ interface MessageProps {
   message: string
 }
 
-const Message = (props: MessageProps) => (
-  <section>
+function Message(props: MessageProps) {
+  const navigate = useNavigate();
+
+  return (
+    <section className="flex flex-col gap-6 w-full md:w-2/3 lg:w-1/3 mx-auto">
     <p>{props.message}</p>
+    <button className="button-primary" onClick={() => navigate('/roadmaps/')}>Get back to learning</button>
   </section>
-);
+  )
+}
 
 export default function CheckoutPage() {
   const [message, setMessage] = useState("");
@@ -64,7 +70,7 @@ export default function CheckoutPage() {
     const query = new URLSearchParams(window.location.search);
 
     if (query.get("success")) {
-      setMessage("Order placed! You will receive an email confirmation.");
+      setMessage("Thank you for subscribing!");
     }
 
     if (query.get("canceled")) {
