@@ -25,7 +25,7 @@ export default function Modules(props: ModulesProps) {
               onClick={ () => props.handleOpenModule(module.id) }
               >
               <div className="flex flex-col grow w-full">
-                <p className="font text">{module.title}</p>
+                <p className="">{module.title}</p>
               </div>
             </div>
           ))}

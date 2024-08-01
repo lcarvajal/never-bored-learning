@@ -108,8 +108,7 @@ export default function Module(props: ModuleProps) {
 
   return (
     <>
-      <h1>{module.title}</h1>
-      <p className="">{module.description}</p>
+      <h1 className="font-normal">{module.title}</h1>
       <Submodules submodules={module.submodules} selectedIndex={selectedSubmoduleIndex} onSelectSubmodule={handleSelectSubmodule} />
       {
       resources.length > 0 ? <Resources resources={resources} /> : (

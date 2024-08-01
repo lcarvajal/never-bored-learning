@@ -103,7 +103,7 @@ export default function RoadmapPage() {
         }`}
       >
         <div className="flex flex-col text-start px-4">
-          {roadmap.learning_goal && (<p className="text-xl font-semibold">{roadmap.learning_goal}</p>)}
+          {roadmap.learning_goal && (<p className="text-lg">{roadmap.learning_goal}</p>)}
           <button 
               className="text-sm text-start text-violet-300 hover:text-violet-400 mb-6"
               onClick={() => navigate('/roadmaps/')}>
@@ -114,7 +114,7 @@ export default function RoadmapPage() {
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-col w-full md:w-4/6 gap-4">
+      <div className="flex flex-col w-full md:w-5/6 gap-4 p-4 md:px-16">
         {
           currentModuleId === -1 ? (
             <p className="text-slate-400">Select a module to start</p>

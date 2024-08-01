@@ -16,11 +16,8 @@ export default function Resources(props: ResourcesProps) {
   const resources = props.resources;
 
   return (
-    <div className="flex flex-col gap-2">
-      <h2 className="text-sm text-slate-400">Resources</h2>
-      <div className="flex flex-col gap-4">
-        {resources.map((resource: Resource) => <Resource {...resource} key={resource.id} />)}
-      </div>
+    <div className="flex flex-col gap-4">
+      {resources.map((resource: Resource) => <Resource {...resource} key={resource.id} />)}
     </div>
   )
 }
