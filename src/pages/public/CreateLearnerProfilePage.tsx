@@ -62,14 +62,14 @@ export default function CreateLearnerProfilePage() {
               required
               className='text-box'
             />
-            <label htmlFor="goal">What do you want to learn and why?</label>
+            <label htmlFor="goal">What do you want to learn?</label>
             <textarea
               className="h-48"
               id="goal"
               name="goal"
               value={formValues.goal}
               maxLength={250}
-              minLength={20}
+              minLength={3}
               onChange={handleInputChange}
               required
             />

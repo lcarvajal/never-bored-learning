@@ -56,7 +56,7 @@ export default function CreateRoadmapPage() {
               name="goal"
               value={formValues.goal}
               maxLength={250}
-              minLength={5}
+              minLength={3}
               onChange={handleInputChange}
               required
             />
