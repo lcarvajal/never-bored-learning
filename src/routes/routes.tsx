@@ -6,7 +6,7 @@ import LandingPage from '../pages/public/LandingPage.tsx';
 import ProfilePage from '../pages/ProfilePage.tsx';
 import JavaScriptLandingPage from '../pages/public/JavaScriptLandingPage.tsx';
 import CreateRoadmapPage from '../pages/CreateRoadmapPage.tsx';
-import OrderPreviewPage from '../pages/OrderPreviewPage.tsx';
+import CheckoutPage from '../pages/CheckoutPage.tsx';
 import TermsPage from '../pages/public/TermsPage.tsx';
 import RoadmapPage from '../pages/RoadmapPage.tsx';
 import FollowedRoadmapsPage from '../pages/FollowedRoadmapsPage.tsx';
@@ -62,7 +62,7 @@ export default [
     path: "/checkout/",
     element: (
       <PrivateRoute>
-        <OrderPreviewPage />
+        <CheckoutPage />
       </PrivateRoute>
     ),
     errorElement: <ErrorPage />,

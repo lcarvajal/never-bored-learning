@@ -46,7 +46,7 @@ const Message = (props: MessageProps) => (
   </section>
 );
 
-export default function OrderPreviewPage() {
+export default function CheckoutPage() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
