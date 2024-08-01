@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import fallingBooksImageURL from "../assets/falling-books.png";
 
 function createCheckoutSession(event: React.FormEvent<HTMLFormElement>) {
   event.preventDefault();
@@ -16,20 +17,25 @@ function createCheckoutSession(event: React.FormEvent<HTMLFormElement>) {
 }
 
 const ProductDisplay = () => (
-  <section className="flex flex-col gap-6">
-    <h1 className="p-4 font-normal">
-      Subscribe
-    </h1>
-    <div className="flex flex-col bg-zinc-900 gap-10 py-12 rounded-xl w-1/3 mx-auto text-slate-50  ">
+  <section className="flex flex-col gap-12">
+    <div>
+      <h1 className="p-4 font-normal">
+        You hit your limit of 3 free topics a day
+      </h1>
+      <p>
+        Subscribe to increase your limit
+      </p>
+    </div>
+    <div className="flex flex-col bg-zinc-900 gap-10 py-12 rounded-xl w-full sm:w-2/3 lg:w-1/3 mx-auto text-slate-50  ">
       <div>
-        <img src="./falling-books.png" alt="Subscribe" className="w-1/4 mx-auto rounded-xl -rotate-45 mb-4" />
+        <img src={fallingBooksImageURL} alt="Falling books" className="w-1/4 mx-auto rounded-xl -rotate-45 mb-4" />
         <h1>$5.00</h1>
         <p className="text-zinc-400">per month</p>
       </div>
       <ol className="text-xl font-medium">
-        <li>Latest AI models</li>
+        <li>Create 100 topics daily</li>
+        <li>Higher quality resources</li>
         <li>Faster loading times</li>
-        <li>Unlimited topics</li>
       </ol>
       <form onSubmit={createCheckoutSession} method="POST">
         <button className="button-primary w-2/3" type="submit">

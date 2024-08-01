@@ -9,6 +9,7 @@ import posthog from 'posthog-js'
 import { PostHogProvider } from 'posthog-js/react'
 import { Banner, cookieConsentGiven } from './components/Banner';
 import Navbar from './components/Navbar';
+import { UserProvider } from './routes/UserContext';
 
 
 // Initialize PostHog
@@ -51,12 +52,14 @@ const router = createBrowserRouter([...routes]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <PostHogProvider client={posthog}>
-      <Navbar />
-      <div className="p-4 w-full">
-        <RouterProvider router={router} />
-      </div>
-      <Banner />
-    </PostHogProvider>
+    <UserProvider>
+      <PostHogProvider client={posthog}>
+        <Navbar />
+        <div className="p-4 w-full">
+          <RouterProvider router={router} />
+        </div>
+        <Banner />
+      </PostHogProvider>
+    </UserProvider>
   </React.StrictMode>,
 )

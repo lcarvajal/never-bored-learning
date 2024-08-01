@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -27,7 +27,13 @@ export default function CreateRoadmapPage() {
       const created_roadmap = response.data;
 
       navigate('/roadmaps/' + created_roadmap['id']);
-    } catch (error) {
+    } catch (e) {
+      const error = e as AxiosError;
+
+      if (error.response && error.response.status === 402) {
+        navigate('/checkout/');
+      }
+      
       console.error('Error creating roadmap:', error);
     } finally {
       setIsLoading(false);
