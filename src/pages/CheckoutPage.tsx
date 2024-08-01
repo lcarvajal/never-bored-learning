@@ -16,23 +16,27 @@ function createCheckoutSession(event: React.FormEvent<HTMLFormElement>) {
 }
 
 const ProductDisplay = () => (
-  <section>
-    <div className="product">
-      <img
-        src="https://i.imgur.com/EHyR2nP.png"
-        alt="The cover of Stubborn Attachments"
-        className="mx-auto"
-      />
-      <div className="description">
-      <h3>Stubborn Attachments</h3>
-      <h5>$20.00</h5>
+  <section className="flex flex-col gap-6">
+    <h1 className="p-4 font-normal">
+      Subscribe
+    </h1>
+    <div className="flex flex-col bg-zinc-900 gap-10 py-12 rounded-xl w-1/3 mx-auto text-slate-50  ">
+      <div>
+        <img src="./falling-books.png" alt="Subscribe" className="w-1/4 mx-auto rounded-xl -rotate-45 mb-4" />
+        <h1>$5.00</h1>
+        <p className="text-zinc-400">per month</p>
       </div>
+      <ol className="text-xl font-medium">
+        <li>Latest AI models</li>
+        <li>Faster loading times</li>
+        <li>Unlimited topics</li>
+      </ol>
+      <form onSubmit={createCheckoutSession} method="POST">
+        <button className="button-primary w-2/3" type="submit">
+          Buy now
+        </button>
+      </form>
     </div>
-    <form onSubmit={createCheckoutSession} method="POST">
-      <button type="submit">
-        Checkout
-      </button>
-    </form>
   </section>
 );
 
