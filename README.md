@@ -1,11 +1,10 @@
 # Never Bored Learning Frontend
 
-A webapp for people who easily get distracted on their computer and want to be
-nudges towards learning goals.
+A webapp that takes learning goals and breaks them down into learning material.
 
 ## Demo
 
-
+https://github.com/user-attachments/assets/c8ddfd08-fc2b-4749-b04a-47c094687da1
 
 ## Technologies
 
